@@ -76,7 +76,7 @@ remap = function(mapdata,
   
   ### markPointData
 
-  markpoint = apply(demo,1,function(x) 
+  markpoint = apply(mapdata,1,function(x) 
     paste0("{name:'",x[2],"',value:",x[3],"}"))
   markPointData= paste(markpoint,collapse = ",\n")
 
