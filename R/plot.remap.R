@@ -21,7 +21,7 @@ plot.remap = function(object){
                   "Chinese (Simplified)_People's Republic of China.936")
   }
   
-  file_name = paste0("~/",object@id,".html")
+  file_name = paste0(object@id,".html")
   writeLines(object@content,file_name,useBytes = T)
   
   if(.Platform$OS.type == "windows"){
