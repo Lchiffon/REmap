@@ -14,8 +14,20 @@
 
 
 plot.remap = function(object){
+  
+  if(.Platform$OS.type == "windows"){
+    locate = Sys.getlocale("LC_CTYPE")
+    Sys.setlocale("LC_CTYPE",
+                  "Chinese (Simplified)_People's Republic of China.936")
+  }
+  
   file_name = paste0("~/",object@id,".html")
-  writeLines(object@content,file_name)
+  writeLines(object@content,file_name,useBytes = T)
+  
+  if(.Platform$OS.type == "windows"){
+    Sys.setlocale("LC_CTYPE",locate)
+  }
+  
   cat("Save img as:",file_name)
   browseURL(file_name)
 }

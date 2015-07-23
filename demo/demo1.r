@@ -1,4 +1,8 @@
 
+demoC[,1]
+demoC[,2]
+
+
 set.seed(125)
 out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Dark")
 plot(out)

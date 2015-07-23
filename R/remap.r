@@ -25,6 +25,11 @@ remap = function(mapdata,
                         title = "",
                         subtitle = "",
                         theme = get_theme("Dark")){
+  if(.Platform$OS.type == "windows"){
+    locate = Sys.getlocale("LC_CTYPE")
+    Sys.setlocale("LC_CTYPE",
+                  "English_United Kingdom.1252")
+  }
   
   ### Test and create label:
   if(!is.data.frame(mapdata)){
@@ -55,7 +60,7 @@ remap = function(mapdata,
   
   
   ###geoCoord_data
-  demo$value = sample(seq(0,100,10),nrow(demo),replace = T)
+  mapdata$value = sample(seq(0,100,10),nrow(mapdata),replace = T)
   
   city_data_vec = apply(Geo_data,1,function(x) 
     paste0("'",
@@ -69,7 +74,7 @@ remap = function(mapdata,
   geoCoord_data = paste(city_data_vec,collapse = ",\n")
   
   ###markLineData
-  markLine = apply(demo,1,function(x)
+  markLine = apply(mapdata,1,function(x)
     paste0("[{name:'",x[1],"'}, {name:'",x[2],
            "',value:",x[3],"}]" ))
   markLineData = paste(markLine,collapse = ",\n")
@@ -93,6 +98,14 @@ remap = function(mapdata,
   head = html.data$head
   foot = html.data$foot
   
+  if(.Platform$OS.type == "windows"){
+    Sys.setlocale("LC_CTYPE",
+                  "Chinese (Simplified)_People's Republic of China.936")
+  }
+  
+  output@option = sub("forChange",
+                      "一",output@option)
+  
   output@option = sub("backgroundColorData",
                        theme$backgroundColor,output@option)
   output@option = sub("titleData",title,output@option)
@@ -105,11 +118,138 @@ remap = function(mapdata,
   output@option = sub("markLineData",markLineData,output@option)
   output@option = sub("markPointData",markPointData,output@option)
   
-  
+  output@option = strsplit(output@option,"kkkmmm")[[1]][2]
   output@content =  paste(head,output@option,foot,sep = "\n") 
     
-  
-  
-  
+  if(.Platform$OS.type == "windows"){
+    Sys.setlocale("LC_CTYPE",locate)
+  }
   return(output)
 }
+
+
+
+html.data = list(
+  head = "<html>
+  <head>
+  <meta charset=\"utf-8\">
+  <style type=\"text/css\">
+  body {
+  margin: 0;
+  }
+  #main {
+  height: 100%;
+  }
+  </style>
+  </head>
+  <body>
+  <div id=\"main\"></div>
+  <script src=\"http://echarts.baidu.com/build/dist/echarts.js\"></script>
+  <script src = \"http://echarts.baidu.com/build/dist/echarts-all.js\"></script>
+  <script>
+  var myChart = echarts.init(document.getElementById(\"main\"));
+  
+  var options = " ,
+  option = "forChangekkkmmm{
+  backgroundColor: 'backgroundColorData', 
+  color: ['gold','aqua','lime'],
+  title : {
+  text: 'titleData', 
+  subtext:'subtitleData', 
+  x:'center',
+  textStyle : {
+  color: 'titleColorData'  
+  }
+  },
+  tooltip : {
+  trigger: 'item',
+  formatter: '{b}'
+  },
+  toolbox: {
+  show : true,
+  orient : 'vertical',
+  x: 'right',
+  y: 'center',
+  feature : {
+  mark : {show: true},
+  dataView : {show: true, readOnly: false},
+  restore : {show: true},
+  saveAsImage : {show: true}
+  }
+  },
+  dataRange: {
+  min : 0,
+  show: false,
+  max : 100,
+  y: '60%',
+  calculable : true,
+  color: lineColorData
+  },
+  
+  series : [
+  {
+  type:'map',
+  itemStyle:{
+  normal:{
+  borderColor:'borderColorData', 
+  borderWidth: 0.5,
+  areaStyle:{
+  color: 'regionColorData'  
+  }
+  }
+  },
+  data:[],
+  geoCoord: {geoCoord_data},
+  
+  markLine : {
+  smooth:true,
+  effect : {
+  show: true,
+  scaleSize: 1,
+  period: 30,
+  color: '#fff',
+  shadowBlur: 10
+  },
+  itemStyle : {
+  color: 'red',
+  normal: {
+  borderWidth:1,
+  lineStyle: {
+  type: 'solid',
+  shadowBlur: 10
+  },
+  label:{show:false}
+  }
+  },
+  
+  data : [
+  markLineData
+  ]
+  },
+  markPoint : {
+  symbol:'emptyCircle',
+  symbolSize : function (v){
+  return 10 + v/10
+  },
+  effect : {
+  show: true,
+  shadowBlur : 0
+  },
+  itemStyle:{
+  normal:{
+  label:{show:true}
+  }
+  },
+  data : [
+  markPointData
+  ]	
+  }
+  }
+  ]
+  }",
+  foot = ";
+  myChart.setOption(options);	
+  </script>
+  </body>
+  </html>"
+  )
