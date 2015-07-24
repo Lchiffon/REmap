@@ -18,7 +18,7 @@ plot.remap = function(object){
   if(.Platform$OS.type == "windows"){
     locate = Sys.getlocale("LC_CTYPE")
     Sys.setlocale("LC_CTYPE",
-                  "Chinese (Simplified)_People's Republic of China.936")
+                  "chs")
   }
   
   file_name = paste0(object@id,".html")

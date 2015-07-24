@@ -100,7 +100,7 @@ remap = function(mapdata,
   
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",
-                  "Chinese (Simplified)_People's Republic of China.936")
+                  "chs")
   }
   
   output@option = sub("forChange",
