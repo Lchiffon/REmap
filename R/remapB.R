@@ -5,19 +5,16 @@
 ##' 
 ##' 
 ##' @usage 
-##' remapC(data,
-##'        maptype = 'china',
-##'       markLineData = NA,
-##'       markPointData = NA,
-##'       color = c('#1e90ff','#f0ffff'),
-##'       theme = get_theme("Bright"),
-##'       title = "",
-##'       subtitle = "",
-##'       markLineTheme = markLineControl(),
-##'       markPointTheme = markPointControl(),
-##'       geoData = NA,
-##'       mindata = NA,
-##'       maxdata = NA)
+##' remapB(center = c(104.114129,37.550339),
+##'        zoom = 5,
+##'        color = "Bright",
+##'        title = "",
+##'        subtitle = "",
+##'        markLineData = NA,
+##'        markPointData = NA,
+##'        markLineTheme = markLineControl(),
+##'        markPointTheme = markPointControl(),
+##'        geoData = NA)
 ##'               
 ##' @param center  the center of the Bmap,a vector of (lon,lat),
 ##' you can get from get_city_coord, e.g.get_city_coord("beijing")
@@ -35,11 +32,20 @@
 ##' @return An remap object
 ##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
 ##' @examples 
-##' data = data.frame(country = mapNames("world"),
-##'                    value = 5*sample(178)+200)
-##' head(data)
-##' out = remapC(data,maptype = "world",color = 'skyblue')
-##' plot(out)
+##' 
+##'  geoData  = get_geo_position(unique(demoC[demoC==demoC]))
+##' # this may take some time,be patient~
+##' 
+##' remapB(markLineData = demoC,geoData = geoData)
+##' 
+##' 
+##' 
+##' remapB(markLineData = demoC,color = "Blue",geoData = geoData)
+##' 
+##' 
+##' remapB(markLineData = demoC,markPointData = demoC[,2],
+##'        color = "Blue",geoData = geoData)
+
 
 
 
