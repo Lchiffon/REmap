@@ -18,7 +18,7 @@ and open it by browser
 }
 \examples{
 set.seed(125)
-out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Dark")
+out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>",subtitle = "theme:Dark")
 plot(out)
 }
 \author{

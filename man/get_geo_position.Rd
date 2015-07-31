@@ -27,9 +27,7 @@ Please make sure your bowser can open developer.baidu.com/map/ to get the data.
 }
 \examples{
 city_vec1 = c("Beijing","Shanghai","Guangzhou")
-city_vec2 = c("北京","上海","广州")
 get_geo_position (city_vec1)
-get_geo_position (city_vec2)
 }
 \author{
 Dawei.Lang Chiffon <\url{http://chiffon.gitcafe.io}>

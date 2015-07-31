@@ -18,6 +18,12 @@
 ##' @param titleColor     Control the color of the title
 ##' @param borderColor    Control the color of the border
 ##' @param regionColor    Control the color of the region
+##' @param labelShow   whether show the label of each element, 
+##' only support mapC.
+##' @param pointShow  whether show the center point of each element, 
+##' only support mapC.
+##' @param pointColor  color of the center point of each element, 
+##' only support mapC.
 ##' @return A list of color control, which can be used by remap
 ##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
 ##' @examples
@@ -66,7 +72,10 @@ get_theme = function(theme = "Dark",
               backgroundColor = "#1b1b1b",
               titleColor = "#fff",
               borderColor = "rgba(100,149,237,1)",
-              regionColor = "#1b1b1b"){
+              regionColor = "#1b1b1b",
+              labelShow = T,
+              pointShow = F,
+              pointColor = 'gold'){
   
  
       theme_data = list(
@@ -75,23 +84,47 @@ get_theme = function(theme = "Dark",
           backgroundColor = "#1b1b1b",
           titleColor = "#fff",
           borderColor = "rgba(100,149,237,1)",
-          regionColor = "#1b1b1b"
+          regionColor = "#1b1b1b",
+          labelShow = 'true',
+          pointShow = 'false',
+          pointColor = 'gold'
         ),
         Bright = list(
           lineColor = "Random",
           backgroundColor = "#D9D9D9",
           titleColor = "#1b1b1b",
           borderColor = "rgba(100,149,237,1)",
-          regionColor = "#fff"
+          regionColor = "#fff",
+          labelShow = 'true',
+          pointShow = 'false',
+          pointColor = 'gold'
         ),
         Sky = list(
           lineColor = "Random",
           backgroundColor = "#fff",
           titleColor = "#1b1b1b",
           borderColor = "rgba(100,149,237,1)",
-          regionColor = "#AEEEEE"
+          regionColor = "#AEEEEE",
+          labelShow = 'true',
+          pointShow = 'false',
+          pointColor = 'gold'
         )
       )
+      
+      
+      if(labelShow){
+        labelShow = 'true'
+      }else{
+        labelShow = 'false'
+      }
+      
+      if(pointShow){
+        pointShow = 'true'
+      }else{
+        pointShow = 'false'
+      }
+      
+      
       
       if (theme %in% c("Dark","Bright","Sky")){
           out_theme = theme_data[[theme]]
@@ -101,7 +134,10 @@ get_theme = function(theme = "Dark",
           backgroundColor = backgroundColor,
           titleColor = titleColor,
           borderColor = borderColor,
-          regionColor = regionColor
+          regionColor = regionColor,
+          labelShow = labelShow,
+          pointShow = pointShow,
+          pointColor = pointColor
         )
       }
       

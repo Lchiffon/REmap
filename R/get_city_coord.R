@@ -11,7 +11,6 @@
 ##' @return a vecctor of longtitude and latitude
 ##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
 ##' @examples
-##' get_city_coord("北京")
 ##' get_city_coord("Shanghai")
 
 

@@ -12,3 +12,14 @@
 library(devtools)
 install_github('REmap', 'lchiffon')
 ```
+
+
+V0.2
+add Choroplrth Map into REmap: remapC
+add BaiduMap into REmap: remapB
+add three new control into get_theme
+add markLine,markPoint control
+delete Chinese character in .Rd file
+
+V0.1
+demo function: remap

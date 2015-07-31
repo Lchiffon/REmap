@@ -22,7 +22,6 @@ can be a Chinese string or an English name,like Shanghai.
 This function is used BaiduAPI to get the geo information.
 }
 \examples{
-get_city_coord("北京")
 get_city_coord("Shanghai")
 }
 \author{

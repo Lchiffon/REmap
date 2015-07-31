@@ -16,7 +16,7 @@
 ##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
 ##' @examples
 ##' set.seed(125)
-##' out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Dark")
+##' out = remap(demoC,title = "REmap",subtitle = "theme:Dark")
 ##' plot(out)
 ##' summary(out)
 

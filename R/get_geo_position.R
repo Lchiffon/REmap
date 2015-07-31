@@ -16,9 +16,8 @@
 ##' @author Dawei.Lang Chiffon <\url{http://chiffon.gitcafe.io}>
 ##' @examples
 ##' city_vec1 = c("Beijing","Shanghai","Guangzhou")
-##' city_vec2 = c("北京","上海","广州")
 ##' get_geo_position (city_vec1)
-##' get_geo_position (city_vec2)
+
 
 
 
