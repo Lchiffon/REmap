@@ -1,7 +1,7 @@
 ## REmap
 ### Create html maps by Echarts
 
-- Version: 0.1
+- Version: 0.2
 - Authors@R: "Dawei Lang <dawei.lang@supstat.com> [aut, cre]"
 - Description: Provides an R interface to the JavaScript library ECharts for
     interactive map data visualization.
