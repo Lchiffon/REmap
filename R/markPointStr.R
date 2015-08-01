@@ -29,6 +29,11 @@ markPointStr = function(markPointData,
     
   }
   
+  if(!is.numeric(geoData[1,1])){
+    geoData[,1] = as.numeric(as.character(geoData[,1]))
+    geoData[,2] = as.numeric(as.character(geoData[,2]))
+  }
+  
   if(!is.character(geoData[1,3])){
     geoData[,3] = as.character(geoData[,3])
   }

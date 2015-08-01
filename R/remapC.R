@@ -48,6 +48,10 @@
 ##' head(data)
 ##' out = remapC(data,maptype = "world",color = 'skyblue')
 ##' plot(out)
+##' 
+##' remapC(chinaIphone,
+##'         markLineData = demoC,
+##'         markPointData = demoC[,2])
 
 remapC = function(data,
                   maptype = 'china',
@@ -125,18 +129,43 @@ remapC = function(data,
     minData = mindata
   }
   
+  markLineLogi = (length(dim(markLineData)) ==2)
+  markPointLogi = class(markPointData)!='logical'
+  geoDataLogi = class(geoData)!='logical'
+  
+  
+  if(markLineLogi & markPointLogi & !geoDataLogi){
+    cityNames = c(as.character(markLineData[,1]),
+                  as.character(markLineData[,1]))
+    if(is.data.frame(markPointData)){
+      cityNames = c(cityNames,
+                    as.character(markPointData[,1]))
+    }else{
+      # it's a vector
+      cityNames = c(cityNames,markPointData)
+    }
+    
+    geoData = get_geo_position(unique(cityNames))
+  }
+  
+  
+  
   ## Prepare for mark Line data
   if(is.na(markLineData)){
     markLineData = ""
   }else{
-    markLineData = markLineStr(markLineData,markLineTheme,geoData)
+    markLineData = markLineStr(markLineData,
+                               markLineTheme,
+                               geoData)
   }
   
   ## Prepare for mark point data
   if(is.na(markPointData)){
     markPointData = ""
   }else{
-    markPointData = markPointStr(markPointData,markPointTheme,geoData)
+    markPointData = markPointStr(markPointData,
+                                 markPointTheme,
+                                 geoData)
   }
 
   

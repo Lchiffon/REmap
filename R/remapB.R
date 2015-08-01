@@ -69,10 +69,27 @@ remapB = function(center = c(104.114129,37.550339),
   
   markLineLogi = (length(dim(markLineData)) ==2)
   markPointLogi = class(markPointData)!='logical'
+  geoDataLogi = class(geoData)!='logical'
+  
   
   
   if(!(markLineLogi | markPointLogi)){
     stop("You should have at least a dataframe, markLineData or markPointData ")
+  }
+  
+  
+  if(markLineLogi & markPointLogi & !geoDataLogi){
+    cityNames = c(as.character(markLineData[,1]),
+                  as.character(markLineData[,1]))
+    if(is.data.frame(markPointData)){
+      cityNames = c(cityNames,
+                    as.character(markPointData[,1]))
+    }else{
+      # it's a vector
+      cityNames = c(cityNames,markPointData)
+    }
+    
+    geoData = get_geo_position(unique(cityNames))
   }
   
   if(markLineLogi ==F){
