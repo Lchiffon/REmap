@@ -12,7 +12,9 @@
 library(devtools)
 install_github('REmap', 'lchiffon')
 ```
+<img src = "http://www.xueqing.cc/uploads/Article/face/thumbs/10_1437631903.png">
 
+- [REmap Tutorial](lchiffon.github.io/REmap)
 
 
 ----
