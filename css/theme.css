@@ -51,6 +51,6 @@ body {
 }
 @media (min-width:768px){
 .fork-image a{
-	display:none
+	display:none;
 }
 }
