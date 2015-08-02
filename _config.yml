@@ -4,13 +4,13 @@ name: REmap
 description: A package for Echarts maps in R
 
 # url is currently only used only for the RSS feed in feed.xml
-url: http://lchiffon.github.io/remap
+url: http://lchiffon.github.io/REmap
 
 # baseurl will often be '', but for a project page on gh-pages, it needs to
 # be the project name.
 # *** IMPORTANT: If your local "jekyll serve" throws errors change this to '' or
 #     run it like so: jekyll serve --baseurl=''
-baseurl: ''
+baseurl: '/REmap'
 
 # This can be '' to hide the Github nav button
 github: 'lchiffon/remap'
