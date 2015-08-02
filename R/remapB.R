@@ -73,10 +73,10 @@ remapB = function(center = c(104.114129,37.550339),
   
   
   
-  if(!(markLineLogi | markPointLogi)){
-    stop("You should have at least a dataframe, markLineData or markPointData ")
-  }
-  
+#   if(!(markLineLogi | markPointLogi)){
+#     stop("You should have at least a dataframe, markLineData or markPointData ")
+#   }
+#   
   
   if(markLineLogi & markPointLogi & !geoDataLogi){
     cityNames = c(as.character(markLineData[,1]),
