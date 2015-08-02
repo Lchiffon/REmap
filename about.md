@@ -2,6 +2,8 @@
 layout: default
 ---
 
+### About REmap
+
 REmap是一个基于Echarts <http://echarts.baidu.com>
 的一个R包.主要的目的是为广大数据玩家提供一个简便的,可交互的地图数据可视化工具.目前托管在github,
 <https://github.com/lchiffon/REmap>
