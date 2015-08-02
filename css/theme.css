@@ -49,8 +49,4 @@ body {
 .author a {
     color: #ee4444;
 }
-@media (min-width:768px){
-.fork-image a{
-	display:none;
-}
-}
+
