@@ -8,13 +8,15 @@
 - Depends: R (>= 3.1.2)
 - License: MIT + file LICENS
 
+- [REmap Tutorial](http://lchiffon.github.io/REmap)
+
 ```
 library(devtools)
 install_github('REmap', 'lchiffon')
 ```
 <img src = "http://www.xueqing.cc/uploads/Article/face/thumbs/10_1437631903.png">
 
-- [REmap Tutorial](lchiffon.github.io/REmap)
+
 
 
 ----
