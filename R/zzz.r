@@ -10,7 +10,12 @@ setClass("remap",
 
 setMethod("show",
           signature = "remap",
-          definition = plot.remap )
+          definition = function(object){
+            
+            plot.remap(object,path = "") 
+          })
+
+
 
 setMethod("summary",
           signature = "remap",

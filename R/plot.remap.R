@@ -5,15 +5,17 @@
 ##' 
 ##' 
 ##' @param object an remap object
+##' @param path  the path for saving REmap object
 ##' @return Create a html file according to the id of the object
 ##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
 ##' @examples
 ##' set.seed(125)
-##' out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Dark")
+##' out = remap(demoC,title = "REmap: Demo DATA",
+##' subtitle = "theme:Dark")
 ##' plot(out)
 
 
-plot.remap = function(object){
+plot.remap = function(object,path = ""){
   
   if(.Platform$OS.type == "windows"){
     locate = Sys.getlocale("LC_CTYPE")
@@ -21,8 +23,11 @@ plot.remap = function(object){
                   "chs")
   }
   
+
   file_name = paste0(object@id,".html")
-  writeLines(object@content,file_name,useBytes = T)
+  writeLines(object@content,
+             paste0(path,file_name),
+             useBytes = T)
   
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",locate)

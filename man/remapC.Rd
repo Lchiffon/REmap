@@ -67,6 +67,10 @@ data = data.frame(country = mapNames("world"),
 head(data)
 out = remapC(data,maptype = "world",color = 'skyblue')
 plot(out)
+
+remapC(chinaIphone,
+        markLineData = demoC,
+        markPointData = demoC[,2])
 }
 \author{
 Chiffon <\url{http://chiffon.gitcafe.io}>

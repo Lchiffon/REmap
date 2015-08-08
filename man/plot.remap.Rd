@@ -4,10 +4,12 @@
 \alias{plot.remap}
 \title{plot the remap object}
 \usage{
-\method{plot}{remap}(object)
+\method{plot}{remap}(object, path = "")
 }
 \arguments{
 \item{object}{an remap object}
+
+\item{path}{the path for saving REmap object}
 }
 \value{
 Create a html file according to the id of the object
@@ -18,7 +20,8 @@ and open it by browser
 }
 \examples{
 set.seed(125)
-out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>",subtitle = "theme:Dark")
+out = remap(demoC,title = "REmap: Demo DATA",
+subtitle = "theme:Dark")
 plot(out)
 }
 \author{

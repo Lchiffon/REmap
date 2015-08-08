@@ -332,8 +332,8 @@ html.data.B = list(head = "<html>
                 <script src='http://echarts.baidu.com/build/dist/echarts.js'></script>
                 <script type='text/javascript' src='http://api.map.baidu.com/api?v=2.0&ak=q9U1lWgCK1aBGVC1DVWrgWa7'></script>
                 <script src='http://echarts.baidu.com/doc/asset/js/jquery.min.js'></script>
-                ",
-               options = "forChangekkkmmm<script>
+                <script>",
+               options = "forChangekkkmmm
                 (function () {
                 require.config({
                 paths: {
@@ -355,10 +355,6 @@ html.data.B = list(head = "<html>
                 'echarts/chart/map'
                 ],
                 function (echarts, BMapExtension) {
-                $('#main').css({
-                height:$('body').height(),
-                width: $('body').width()
-                });
                 
                 var BMapExt = new BMapExtension($('#main')[0], BMap, echarts,{
                 enableMapClick: false

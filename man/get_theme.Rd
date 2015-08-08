@@ -50,27 +50,27 @@ Can use "red","#1b1b1b" or rgba(100,100,100,1) to control the color
 \examples{
 ## default theme:"Dark"
 set.seed(125)
-out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>",subtitle = "theme:Bright",
+out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Bright",
             theme = get_theme("Bright"))
 plot(out)
 
 ## set Line color as 'orange'
 set.seed(125)
-out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>",subtitle = "theme:Bright",
+out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Bright",
             theme = get_theme("None",
                              lineColor = "orange"))
 plot(out)
 
 ## Set backgroundColor as 'red'(#FF0000)
 
-out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>",subtitle = "theme:Bright",
+out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Bright",
             theme = get_theme("None",
                               lineColor = "orange",
                               backgroundColor = "#FF0000"))
 plot(out)
 
 ## Set TitleColor
-out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>",subtitle = "theme:Bright",
+out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Bright",
             theme = get_theme("None",
                               lineColor = "orange",
                               backgroundColor = "#FFC1C1",
@@ -78,7 +78,7 @@ out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>
 plot(out)
 
 ## Set Region Color
-out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>",subtitle = "theme:Bright",
+out = remap(demoC,title = "REmap示例数据",subtitle = "theme:Bright",
             theme = get_theme("None",
                               lineColor = "orange",
                               backgroundColor = "#FFC1C1",

@@ -123,7 +123,7 @@ Output = paste0(",markPoint : {
         }
       },
       emphasis: {
-        label:{position:'top'}
+        label:{show:false}
       }
       },
       data : [",markPointStr,"
