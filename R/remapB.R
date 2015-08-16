@@ -1,10 +1,10 @@
 ##' Create a Bmap object
-##'  
+##'
 ##' remapB uses BaiduAPI instead of SVG object as the map object.
 ##' You can mark line or point on the remapB.
-##' 
-##' 
-##' @usage 
+##'
+##'
+##' @usage
 ##' remapB(center = c(104.114129,37.550339),
 ##'        zoom = 5,
 ##'        color = "Bright",
@@ -15,7 +15,7 @@
 ##'        markLineTheme = markLineControl(),
 ##'        markPointTheme = markPointControl(),
 ##'        geoData = NA)
-##'               
+##'
 ##' @param center  the center of the Bmap,a vector of (lon,lat),
 ##' you can get from get_city_coord, e.g.get_city_coord("beijing")
 ##' @param zoom   the size of the Bmap, zoom:5 country data,
@@ -26,23 +26,23 @@
 ##' @param markLineData   data for mark line
 ##' @param markPointData   data for mark point
 ##' @param markLineTheme  theme for mark line
-##' @param markLineTheme  theme for mark point 
-##' @param geoData geoData for markLine and markPoint format is 
+##' @param markLineTheme  theme for mark point
+##' @param geoData geoData for markLine and markPoint format is
 ##' similar as get_geo_position()
 ##' @return An remap object
 ##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
-##' @examples 
-##' 
+##' @examples
+##'
 ##'  geoData  = get_geo_position(unique(demoC[demoC==demoC]))
 ##' # this may take some time,be patient~
-##' 
+##'
 ##' remapB(markLineData = demoC,geoData = geoData)
-##' 
-##' 
-##' 
+##'
+##'
+##'
 ##' remapB(markLineData = demoC,color = "Blue",geoData = geoData)
-##' 
-##' 
+##'
+##'
 ##' remapB(markLineData = demoC,markPointData = demoC[,2],
 ##'        color = "Blue",geoData = geoData)
 
@@ -59,25 +59,25 @@ remapB = function(center = c(104.114129,37.550339),
                   markLineTheme = markLineControl(),
                   markPointTheme = markPointControl(),
                   geoData = NA){
-  
-  
+
+
   if(.Platform$OS.type == "windows"){
     locate = Sys.getlocale("LC_CTYPE")
     Sys.setlocale("LC_CTYPE","eng")
   }
-  
-  
+
+
   markLineLogi = (length(dim(markLineData)) ==2)
   markPointLogi = class(markPointData)!='logical'
   geoDataLogi = class(geoData)!='logical'
-  
-  
-  
+
+
+
 #   if(!(markLineLogi | markPointLogi)){
 #     stop("You should have at least a dataframe, markLineData or markPointData ")
 #   }
-#   
-  
+#
+
   if(markLineLogi & markPointLogi & !geoDataLogi){
     cityNames = c(as.character(markLineData[,1]),
                   as.character(markLineData[,1]))
@@ -88,10 +88,10 @@ remapB = function(center = c(104.114129,37.550339),
       # it's a vector
       cityNames = c(cityNames,markPointData)
     }
-    
+
     geoData = get_geo_position(unique(cityNames))
   }
-  
+
   if(markLineLogi ==F){
     markLineData = ""
   }else{
@@ -99,7 +99,7 @@ remapB = function(center = c(104.114129,37.550339),
                                markLineTheme,
                                geoData)
   }
-  
+
   if(markPointLogi ==F){
     markPointData = ""
   }else{
@@ -107,8 +107,8 @@ remapB = function(center = c(104.114129,37.550339),
                                  markPointTheme,
                                  geoData)
   }
-  
-  
+
+
   if(color == "Blue"){
     mapStyleData = "map.setMapStyle({
     styleJson: [
@@ -247,28 +247,28 @@ remapB = function(center = c(104.114129,37.550339),
   mapStyleData = ""
   titleColor = "black"
 }
-  
+
   output = new("remap")
   output@id = paste('ID', format(Sys.time(), "%Y%m%d%H%M%S"),
                     proc.time()[3]*100, sep="_")
   output@theme = get_theme()
   output@maptype = "Bmap"
-  
-  
-  
+
+
+
   output@option = html.data.B$option
   head = html.data.B$head
   foot = html.data.B$foot
-  
+
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",
                   "chs")
   }
-  
-  
+
+
   output@option = sub("forChange",
                       "一",output@option)
-  
+
   ##longtitude and latitude
   output@option = sub("lonData",
                       center[1],output@option)
@@ -278,38 +278,38 @@ remapB = function(center = c(104.114129,37.550339),
   ## zoom
   output@option = gsub("zoomData",
                        zoom,output@option)
-  
+
   ## theme
 
   output@option = sub("//mapStyleData",
                       mapStyleData,output@option)
-  
+
   ## Title subtitle and color
   output@option = sub("titleData",title,output@option)
   output@option = sub("subtitleData",subtitle,output@option)
   output@option = gsub("titleColorData",
                        titleColor,output@option)
-  
-  
+
+
   ## markline and mark point
   output@option = sub("//markLineData",
                       markLineData,output@option)
   output@option = sub("//markPointData",
                       markPointData,output@option)
-  
+
   output@option = strsplit(output@option,"kkkmmm")[[1]][2]
-  output@content =  paste(head,output@option,foot,sep = "\n") 
-  
+  output@content =  paste(head,output@option,foot,sep = "\n")
+
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",locate)
   }
   return(output)
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 }
 
 
@@ -347,7 +347,7 @@ html.data.B = list(head = "<html>
                 }
                 ]
                 });
-                
+
                 require(
                 [
                 'echarts',
@@ -355,13 +355,13 @@ html.data.B = list(head = "<html>
                 'echarts/chart/map'
                 ],
                 function (echarts, BMapExtension) {
-                
+
                 var BMapExt = new BMapExtension($('#main')[0], BMap, echarts,{
                 enableMapClick: false
                 });
                 var map = BMapExt.getMap();
                 var container = BMapExt.getEchartsContainer();
-                
+
                 var startPoint = {
                 x: lonData,
                 y: latData
@@ -369,8 +369,8 @@ html.data.B = list(head = "<html>
                 var point = new BMap.Point(startPoint.x, startPoint.y);
                 map.centerAndZoom(point, zoomData);
                 map.enableScrollWheelZoom(true);
-                //mapStyleData 
-                
+                //mapStyleData
+
 
 option = {
   color: ['gold','aqua','lime'],
@@ -385,10 +385,13 @@ option = {
   tooltip : {
     show: true,
     trigger: 'item',
-    formatter:function(params,ticket,callback){
-              return(params[1]);
-                }
-  },
+    formatter: function (v) {
+               if(v[2].tooltipValue!=null){
+               return v[2].tooltipValue;
+               }else{
+               return v[1];
+               }
+  }},
   toolbox: {
     show : true,
     orient : 'vertical',
@@ -408,7 +411,7 @@ option = {
       data:[]
       //markLineData
       //markPointData
-      
+
     },
     ]
 };
@@ -423,5 +426,5 @@ BMapExt.setOption(option);
 </script>
   </body>
   </html>
-  
+
   ")
