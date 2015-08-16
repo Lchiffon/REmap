@@ -1,7 +1,7 @@
 ## REmap
 ### Create html maps by Echarts
 
-- Version: 0.2
+- Version: 0.2.1
 - Authors@R: "Dawei Lang <dawei.lang@supstat.com> [aut, cre]"
 - Description: Provides an R interface to the JavaScript library ECharts for
     interactive map data visualization.
@@ -22,6 +22,12 @@ install_github('lchiffon/REmap')
 ----
 ### 更新日志
 
+#### V0.2.1
+
+- 在调用remapC与remapB时,可以设置line和point的tooltip
+- 调用markPoint可以在数据中设置symbolSize来控制点的大小
+- 增加knitr的支持
+
 #### V0.2
 
 - 增加分级统计图(Choropleth Map): remapC
@@ -39,6 +45,13 @@ install_github('lchiffon/REmap')
 ----
 ### Update Log
 
+
+#### V0.2.1
+
+- Add tooltip to markpoint and markLine( set a vector called 'tooltip' to the data)
+- Add symbolSize to markpoint( set a vector called 'symbolsize' to the data)
+- Support REmap in knitr
+ 
 #### V0.2
 
 - Add Choropleth Map into REmap: remapC
