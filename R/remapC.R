@@ -277,7 +277,7 @@ html.data.C = list(
           }else{
             return v[1];
           }
-  },
+  }},
     legend: {
         show:pointShowData,
         orient: 'vertical',
