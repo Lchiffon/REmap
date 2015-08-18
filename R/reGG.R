@@ -3,6 +3,7 @@
 setClass("remapgg",
          representation (
            mapdata = "data.frame",
+           maptype = "character",
            print = "logical",
            argument = "list"
          ))

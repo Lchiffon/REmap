@@ -111,7 +111,7 @@ markPointStr = function(markPointData,
 }"
   symbolsizeValue = NULL
   }else{
-    symbolSizeData = symbolSize
+    symbolsizeData = symbolSize
     symbolsizeValue = NULL
 }
 
