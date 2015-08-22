@@ -4,10 +4,13 @@
 \alias{get_geo_position}
 \title{Get the location information of the city vector}
 \usage{
-get_geo_position(city_vec)
+get_geo_position(city_vec, cache_data = "city", ...)
 }
 \arguments{
 \item{city_vec}{a character object of the name of Chinese city,}
+
+\item{cache_data}{c('city','airport','none') city for city geo_position,
+airport for the geo_position in that city, none for nothing for cache}
 }
 \value{
 A dataframe of longtitude and latitude and city name

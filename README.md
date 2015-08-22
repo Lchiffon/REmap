@@ -22,6 +22,12 @@ install_github('lchiffon/REmap')
 ----
 ### 更新日志
 
+#### V0.2.2
+
+- 调整demo的文档,可以用demo函数来调用
+- `get_geo_postion`把原始的机场经纬度chche改为城市经纬度
+- fix bugs
+
 #### V0.2.1
 
 - 在调用remapC与remapB时,可以设置line和point的tooltip
@@ -45,6 +51,13 @@ install_github('lchiffon/REmap')
 ----
 ### Update Log
 
+
+
+#### V0.2.2
+
+- Support demo for REmap
+- Change the airport cache data to city data in `get_geo_position` function
+- Fix bugs
 
 #### V0.2.1
 

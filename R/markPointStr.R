@@ -139,7 +139,7 @@ markPointStr = function(markPointData,
          tooltipExist)){
     valuedata = getValue(valueDF)
   }else{
-    valuedata = sample(100,nrow(markPointData))
+    valuedata = sample(100,nrow(markPointData),replace = T)
   }
 
   mapdata = data.frame(markPointData[,1],
