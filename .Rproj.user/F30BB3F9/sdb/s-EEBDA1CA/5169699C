@@ -1,0 +1,18 @@
+{
+    "contents" : "plot = remapC(chinaIphone,\n       markLineData = demoC,\n        markPointData = demoC[,2])\n\n\nplot@content  = sub(\"http://echarts.baidu.com/build/dist/echarts.js\",\n                    \"E:/git/echarts/build/dists/echarts.js\",plot@content)\nplot@content  = sub(\"http://echarts.baidu.com/build/dist/echarts-all.js\",\n                    \"E:/git/echarts/build/dist/echarts-all.js\",plot@content)\n\nplot\n",
+    "created" : 1440860393468.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3280267665",
+    "id" : "5169699C",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

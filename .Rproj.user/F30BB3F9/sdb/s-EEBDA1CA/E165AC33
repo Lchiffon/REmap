@@ -1,0 +1,18 @@
+{
+    "contents" : ".onAttach <- function(libname, pkgname ){\n  \n  \n  # save JS files into \n  remap_path_1 = file.path(\"\")\n  ## we'd really recommended user to use Chrome browser to display the canvas charts.\n  chrome_path = file.path(Sys.getenv(\"LOCALAPPDATA\"), \"Google\\\\Chrome\\\\Application\\\\chrome.exe\", fsep =\"\\\\\")\n  chrome_path_2 = file.path(\"C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\")\n  chrome_path_3 = file.path(\"C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\")\n  \n  if( file.exists(chrome_path)){\n    options( browser = chrome_path)\n  }else if(file.exists(chrome_path_2)){\n    options( browser = chrome_path_2)\n  }else if(file.exists(chrome_path_3)){\n    options( browser = chrome_path_3)\n  }\n  \n  \n  ## This function are required to set option in recharts functions,\n  \n  #options(recharts.html5.dir = chartr(\"\\\\\", \"/\", system.file(\"html5\", package = \"recharts\")))\n  options(recharts.geoData.dir = chartr(\"\\\\\", \"/\", system.file(\"data\", package = \"recharts\")))\n  options(recharts.template.dir = chartr(\"\\\\\", \"/\", system.file(\"template\", package = \"recharts\")))\n  options(recharts.images.dir = chartr(\"\\\\\", \"/\", system.file(\"images\", package = \"recharts\")))\n  \n  \n  \n  options(recharts.plot.tag=NULL)\n  options(recharts.print.tag=\"html\")\n  \n  recharts.tags <- c(\"type\",  \"chartid\", \"html\", \"header\", \"chart\", \"jsHeader\", \"jsData\", \"jsDrawChart\", \n                     \"jsDisplayChart\", \"jsFooter\", \"jsChart\", \"divChart\", \"caption\", \"footer\")\n  options(recharts.tags = recharts.tags)\n  \n  jsLoaderFlag <<- FALSE\n  \n}",
+    "created" : 1440939534633.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3275068943",
+    "id" : "E165AC33",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
