@@ -10,8 +10,8 @@
 ##' @usage
 ##' remapC(data,
 ##'        maptype = 'china',
-##'       markLineData = NA,
-##'       markPointData = NA,
+##'       markLineData = NULL,
+##'       markPointData = NULL,
 ##'       color = c('#1e90ff','#f0ffff'),
 ##'       theme = get_theme("Bright"),
 ##'       title = "",
@@ -55,8 +55,8 @@
 
 remapC = function(data,
                   maptype = 'china',
-                  markLineData = NA,
-                  markPointData = NA,
+                  markLineData = NULL,
+                  markPointData = NULL,
                   color = c('#1e90ff','#f0ffff'),
                   theme = get_theme("Bright"),
                   title = "",
@@ -91,12 +91,12 @@ remapC = function(data,
   }
 
   mapnames = mapNames(mapType = maptype)
-  hit = sum(sapply(data[,1],function(x)
-              sum(x %in% mapnames)))/length(mapnames)
-
-  if(hit<0.5){
-    warning(paste0("Over 50% places(column 1) are not found in ",maptype))
-  }
+#   hit = sum(sapply(data[,1],function(x)
+#               sum(x %in% mapnames)))/length(mapnames)
+#
+#   if(hit<0.5){
+#     warning(paste0("Over 50% places(column 1) are not found in ",maptype))
+#   }
 
 
   mapCVec = apply(data,1,function(x)
@@ -151,7 +151,7 @@ remapC = function(data,
 
 
   ## Prepare for mark Line data
-  if(is.na(markLineData)){
+  if(is.null(markLineData)){
     markLineData = ""
   }else{
     markLineData = markLineStr(markLineData,
@@ -160,7 +160,7 @@ remapC = function(data,
   }
 
   ## Prepare for mark point data
-  if(is.na(markPointData)){
+  if(is.null(markPointData)){
     markPointData = ""
   }else{
     markPointData = markPointStr(markPointData,

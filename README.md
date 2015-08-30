@@ -1,7 +1,7 @@
 ## REmap
 ### Create html maps by Echarts
 
-- Version: 0.2.1
+- Version: 0.3
 - Authors@R: "Dawei Lang <dawei.lang@supstat.com> [aut, cre]"
 - Description: Provides an R interface to the JavaScript library ECharts for
     interactive map data visualization.
@@ -21,6 +21,10 @@ install_github('lchiffon/REmap')
 
 ----
 ### 更新日志
+
+#### V0.3
+- 修复remapC的warning bugs
+- 新增remapH热力图效果
 
 #### V0.2.2
 
@@ -51,7 +55,9 @@ install_github('lchiffon/REmap')
 ----
 ### Update Log
 
-
+#### V0.3
+- fix warning bugs of remapC
+- add remapH heatmap function
 
 #### V0.2.2
 

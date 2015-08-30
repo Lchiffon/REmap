@@ -6,8 +6,8 @@
 \usage{
 remapC(data,
        maptype = 'china',
-      markLineData = NA,
-      markPointData = NA,
+      markLineData = NULL,
+      markPointData = NULL,
       color = c('#1e90ff','#f0ffff'),
       theme = get_theme("Bright"),
       title = "",
