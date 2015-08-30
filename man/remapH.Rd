@@ -6,7 +6,7 @@
 \usage{
 remapH(data,
       maptype = 'china',
-      theme = get_theme("Bright"),
+      theme = get_theme("Dark"),
       blurSize = 30,
       color = c('blue', 'cyan', 'lime', 'yellow', 'red'),
       minAlpha = 0.05,

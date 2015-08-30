@@ -10,7 +10,7 @@
 ##' @usage
 ##' remapH(data,
 ##'       maptype = 'china',
-##'       theme = get_theme("Bright"),
+##'       theme = get_theme("Dark"),
 ##'       blurSize = 30,
 ##'       color = c('blue', 'cyan', 'lime', 'yellow', 'red'),
 ##'       minAlpha = 0.05,
@@ -46,7 +46,7 @@
 remapH = function(data,
                   maptype = 'china',
                   # color = c('#1e90ff','#f0ffff'),
-                  theme = get_theme("Bright"),
+                  theme = get_theme("Dark"),
                   blurSize = 30,
                   color = c('blue', 'cyan', 'lime', 'yellow', 'red'),
                   minAlpha = 0.05,
@@ -213,7 +213,7 @@ remapH = function(data,
                       theme$pointColor,output@option)
 
   ## end V0.2
-  output@option = gsub("backgroundColorData",
+  output@option = sub("backgroundColorData",
                        theme$backgroundColor,output@option)
   output@option = sub("titleData",title,output@option)
   output@option = sub("subtitleData",subtitle,output@option)
@@ -336,6 +336,7 @@ html.data.H = list(
   borderColor:'borderColorData',
   borderWidth: 0.5,
   label:{show:labelShowData,textStyle:{color:'titleColorData'}},
+  areaStyle: {color: 'backgroundColorData'}
   },
   emphasis:{label:{show:true,textStyle:{color:'titleColorData'}}}
   },
