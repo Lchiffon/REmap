@@ -1,10 +1,10 @@
 Package: REmap
 Title: Create html maps by Echarts
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: "Dawei Lang <dawei.lang@supstat.com> [aut, cre]"
 Description: Provides an R interface to the JavaScript library ECharts for
     interactive map data visualization.
-Depends: R (>= 3.1.2)
+Depends: R (>= 3.1.0)
 LazyData: true
 Imports:
     XML,

@@ -22,6 +22,10 @@ install_github('lchiffon/REmap')
 ----
 ### 更新日志
 
+#### V0.3.1
+- 新生成的图片将存储在R的临时文件夹中,并在退出R后删除
+- 可以使用`options(remap.js.web = T)`来切换保存到工作目录的模式
+
 #### V0.3
 - 修复remapC的warning bugs
 - 新增remapH热力图效果
@@ -54,6 +58,11 @@ install_github('lchiffon/REmap')
 
 ----
 ### Update Log
+
+
+#### V0.3.1
+- New pictures will be saved in the R temporary file path
+- USe `options(remap.js.web = T)` to set options for saving pictures into working directory
 
 #### V0.3
 - fix warning bugs of remapC
