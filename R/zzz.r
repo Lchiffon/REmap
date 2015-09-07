@@ -1,31 +1,32 @@
 .onAttach  <- function(libname, pkgname ){
   path = tempdir()
 
-  if(!dir.exists(paste0(path,"/js"))){
-    dir.create(paste0(path,"/js"))
-  }
+#   if(!dir.exists(paste0(path,"/js"))){
+#     dir.create(paste0(path,"/js"))
+#   }
+  dir.create(paste0(path,"/js"))
 
   ## save echarts.js
-  if(!dir.exists(paste0(path,"/js/echart.js"))){
+  if(!file.exists(paste0(path,"/js/echart.js"))){
     file.copy(from = system.file("JS/echarts.js",package = 'REmap'),
               to = paste0(path,"/js"))
   }
 
 
   ## Save echarts-all.js
-  if(!dir.exists(paste0(path,"/js/echarts-all.js"))){
+  if(!file.exists(paste0(path,"/js/echarts-all.js"))){
     file.copy(from = system.file("JS/echarts-all.js",package = 'REmap'),
               to = paste0(path,"/js"))
   }
 
   ## Save main.js
-  if(!dir.exists(paste0(path,"/js/main.js"))){
+  if(!file.exists(paste0(path,"/js/main.js"))){
     file.copy(from = system.file("JS/main.js",package = 'REmap'),
               to = paste0(path,"/js"))
   }
 
   ## Save juqery.min.js
-  if(!dir.exists(paste0(path,"/js/jquery.min.js"))){
+  if(!file.exists(paste0(path,"/js/jquery.min.js"))){
     file.copy(from = system.file("JS/jquery.min.js",package = 'REmap'),
               to = paste0(path,"/js"))
   }
