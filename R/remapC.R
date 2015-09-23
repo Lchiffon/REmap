@@ -98,12 +98,19 @@ remapC = function(data,
 #     warning(paste0("Over 50% places(column 1) are not found in ",maptype))
 #   }
 
-
+  if(is.null(data$tooltip)){
   mapCVec = apply(data,1,function(x)
     paste0("{name:'",x[1],
            "',value:",x[2],"}" ))
+  }else{
+    mapCVec = apply(data,1,function(x)
+      paste0("{name:'",x[1],
+             "',value:",x[2],",tooltipValue:",x[3],"}" ))
+  }
+  
+  
   mapCData = paste(mapCVec,collapse = ',\n\t\t')
-
+  
   if(class(color) != 'character'){
     stop("Color should be a character object!")
   }
@@ -272,8 +279,10 @@ html.data.C = list(
   tooltip : {
     trigger: 'item',
     formatter: function (v) {
-          if(v[2].tooltipValue!=null){
-          	return v[2].tooltipvalue;
+			if(typeof(v[2])=='number'){
+			return(v[1]+': '+v[2])
+			}else if(v[2].tooltipValue!=null){
+          	return v[2].tooltipValue;
           }else{
             return v[1];
           }

@@ -49,6 +49,12 @@ reSubtitle = function(subtitle){
   output
 }
 
+reTheme  = function(...){
+  output = new("remapgg")
+  output@print = F
+  output@argument$theme = get_theme(...)
+  output
+}
 
 
 `+.remapgg` = function(object1,object2){
@@ -63,6 +69,12 @@ reSubtitle = function(subtitle){
   if(!is.null(object2@argument$subtitle)){
     object1@argument$subtitle = object2@argument$subtitle
   }
+  
+  
+  if(!is.null(object2@argument$theme)){
+    object1@argument$theme = object2@argument$theme
+  }
+  
 
 #   theme notfound
 #   if(!is.null(object2@argument$title)){
@@ -78,4 +90,6 @@ reSubtitle = function(subtitle){
 # p + reTitle("remapGG")
 #
 # p + reTitle("remapGG") + reSubtitle("remapGG subtitle")
-
+# 
+# p + reTheme(theme = "Bright",lineColor = "Random") +
+#   reTitle("TryTryTry")
