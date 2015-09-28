@@ -8,5 +8,6 @@ Depends: R (>= 3.1.0)
 LazyData: true
 Imports:
     XML,
-    rjson
+    rjson,
+	htmltools
 License: MIT + file LICENSE
