@@ -143,13 +143,14 @@ remapC = function(data,
 
   if(markLineLogi & markPointLogi & !geoDataLogi){
     cityNames = c(as.character(markLineData[,1]),
-                  as.character(markLineData[,1]))
+                  as.character(markLineData[,2]))
     if(is.data.frame(markPointData)){
       cityNames = c(cityNames,
                     as.character(markPointData[,1]))
     }else{
       # it's a vector
-      cityNames = c(cityNames,markPointData)
+      cityNames = c(cityNames,
+                    as.character(markPointData))
     }
 
     geoData = get_geo_position(unique(cityNames))
