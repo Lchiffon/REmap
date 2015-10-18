@@ -1,0 +1,160 @@
+<html>
+  <head>
+  <meta charset="utf-8">
+  <style type="text/css">
+  body {
+  margin: 0;
+  }
+  #main {
+  height: 100%;
+  }
+  </style>
+  </head>
+  <body>
+  <div id="main"></div>
+  <script src="./js/echarts.js"></script>
+  <script src = "./js/echarts-all.js"></script>
+  <script>
+  var myChart = echarts.init(document.getElementById("main"));
+
+  var options = 
+{
+  backgroundColor: '#D9D9D9',
+  color: ['gold','aqua','lime'],
+  title : {
+    text: '2015中国R语言会议',
+    subtext:'',
+    x:'center',
+    textStyle : {
+      color: '#1b1b1b'
+    }
+  },
+  tooltip : {
+    trigger: 'item',
+    formatter: function (v) {
+			if(typeof(v[2])=='number'){
+			return(v[1]+': '+v[2])
+			}else if(v[2].tooltipValue!=null){
+          	return v[2].tooltipValue;
+          }else{
+            return v[1];
+          }
+  }},
+    legend: {
+        show:false,
+        orient: 'vertical',
+        x:'left',
+        data:['Data'],
+      	textStyle:{color:'#D9D9D9'}
+
+    },
+  toolbox: {
+    show : true,
+    orient : 'vertical',
+    x: 'right',
+    y: 'center',
+    feature : {
+      mark : {show: true},
+      dataView : {show: true, readOnly: false},
+      restore : {show: true},
+      saveAsImage : {show: true}
+    }
+  },
+  dataRange: {
+    min : -45,
+    max : 1025,
+    calculable : true,
+    color: ['white', 'white'],
+    textStyle:{
+      color:'#1b1b1b'
+    }
+  },
+  series : [
+    {
+    name:'Data',
+    type:'map',
+    mapType: 'china',
+    itemStyle:{
+    normal:{
+    borderColor:'rgba(100,149,237,1)',
+    borderWidth: 0.5,
+    label:{show:true,textStyle:{color:'#1b1b1b'}},
+    },
+    emphasis:{label:{show:true,textStyle:{color:'#1b1b1b'}}}
+  },
+  data:[{name:'北京',value:629},
+		{name:'天津',value:516},
+		{name:'上海',value:280},
+		{name:'重庆',value:933},
+		{name:'河北',value:296},
+		{name:'河南',value:172},
+		{name:'云南',value:443},
+		{name:'辽宁',value:656},
+		{name:'黑龙江',value:371},
+		{name:'湖南',value:508},
+		{name:'安徽',value:205},
+		{name:'山东',value:203},
+		{name:'新疆',value:298},
+		{name:'江苏',value: 94},
+		{name:'浙江',value:868},
+		{name:'江西',value:908},
+		{name:'湖北',value:106},
+		{name:'广西',value:667},
+		{name:'甘肃',value:442},
+		{name:'山西',value:572},
+		{name:'内蒙古',value:570},
+		{name:'陕西',value:630},
+		{name:'吉林',value:625},
+		{name:'福建',value:962},
+		{name:'贵州',value:896},
+		{name:'广东',value:215},
+		{name:'青海',value:860},
+		{name:'西藏',value:367},
+		{name:'四川',value: 18},
+		{name:'宁夏',value:909},
+		{name:'海南',value:519},
+		{name:'台湾',value:220},
+		{name:'香港',value:303},
+		{name:'澳门',value:430}]
+  
+  ,markPoint : {
+        symbol:'emptyCircle',
+      symbolSize :30,
+      effect : {
+        show: false,
+        type: 'scale',
+        shadowBlur : 0
+      },
+      itemStyle:{
+      normal:{
+        label:{show:false},
+        color:function(param){
+    return(param.data.value.colorValue);
+  }
+      },
+      emphasis: {
+        label:{show:false}
+      }
+      },
+      data : [{name:'西安',value:{colorValue:'aqua',tooltipValue:'2015数据与价值欧亚论坛暨R会议西安分论坛<br/>2015年4月18日<br/><img src=http://13893241220.com/edit/uploadfile/20150422142115193003.jpg width=300px />'},symbol:'image://./pic/cos.png'},
+{name:'广州',value:{colorValue:'lime',tooltipValue:'中国R语言（广州）会议-暨华南地区数据科学会议<br/>2015年5月23-24日<br/><img src=http://cos.name/wp-content/uploads/2015/06/%E8%87%B4%E8%BE%9E.jpg width=300px />'},symbol:'image://./pic/cos.png'},
+{name:'北京',value:{colorValue:'lime',tooltipValue:'第八届中国R语言会议（北京）<br/>2015年6月6-7日<br/><img src=http://cos.name/wp-content/uploads/2015/06/P91A013821.jpg width=300px />'},symbol:'image://./pic/cos.png'},
+{name:'南昌',value:{colorValue:'#ff3333',tooltipValue:'第八届中国R语言会议（南昌会场）暨江西财经大学第一届金融大数据论坛<br/>2015年10月24-25日<br/><img src=http://cos.name/wp-content/uploads/2015/09/China-R-Logo-trans.png width=300px />'},symbol:'image://./pic/cos.png'},
+{name:'武汉',value:{colorValue:'aqua',tooltipValue:'第八届中国R语言会议（武汉）<br/>2015年11月<br/><img src=http://cos.name/wp-content/uploads/2015/09/China-R-Logo-trans.png width=300px />'},symbol:'image://./pic/cos.png'},
+{name:'上海',value:{colorValue:'aqua',tooltipValue:'第八届中国R语言会议（上海）<br/>2015年11月<br/><img src=http://cos.name/wp-content/uploads/2015/09/China-R-Logo-trans.png width=300px />'},symbol:'image://./pic/cos.png'}
+      ]},
+      geoCoord:{'西安': [108.9463,34.34744],
+'广州': [113.2708,23.13531],
+'北京': [116.4136,39.91101],
+'南昌': [115.8645,28.68767],
+'武汉': [114.3118,30.59843],
+'上海': [121.4802,31.23631]
+                  }
+                  
+  }]
+}
+;
+  myChart.setOption(options);
+  </script>
+  </body>
+  </html>

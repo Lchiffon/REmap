@@ -1,0 +1,124 @@
+<html>
+  <head>
+  <meta charset="utf-8">
+  <style type="text/css">
+  body {
+  margin: 0;
+  }
+  #main {
+  height: 100%;
+  }
+  </style>
+  </head>
+  <body>
+  <div id="main"></div>
+  <script src="./js/echarts.js"></script>
+  <script src = "./js/echarts-all.js"></script>
+  <script>
+  var myChart = echarts.init(document.getElementById("main"));
+
+  var options = 
+{
+  backgroundColor: '#D9D9D9',
+  color: ['gold','aqua','lime'],
+  title : {
+    text: '2015年第二季度中国各省份GDP(亿元)',
+    subtext:'中国统计年鉴',
+    x:'center',
+    textStyle : {
+      color: '#1b1b1b'
+    }
+  },
+  tooltip : {
+    trigger: 'item',
+    formatter: function (v) {
+			if(typeof(v[2])=='number'){
+			return(v[1]+': '+v[2])
+			}else if(v[2].tooltipValue!=null){
+          	return v[2].tooltipValue;
+          }else{
+            return v[1];
+          }
+  }},
+    legend: {
+        show:false,
+        orient: 'vertical',
+        x:'left',
+        data:['Data'],
+      	textStyle:{color:'#D9D9D9'}
+
+    },
+  toolbox: {
+    show : true,
+    orient : 'vertical',
+    x: 'right',
+    y: 'center',
+    feature : {
+      mark : {show: true},
+      dataView : {show: true, readOnly: false},
+      restore : {show: true},
+      saveAsImage : {show: true}
+    }
+  },
+  dataRange: {
+    min : -1855,
+    max : 36800,
+    calculable : true,
+    color: ['red', 'yellow'],
+    textStyle:{
+      color:'#1b1b1b'
+    }
+  },
+  series : [
+    {
+    name:'Data',
+    type:'map',
+    mapType: 'china',
+    itemStyle:{
+    normal:{
+    borderColor:'rgba(100,149,237,1)',
+    borderWidth: 0.5,
+    label:{show:true,textStyle:{color:'#1b1b1b'}},
+    },
+    emphasis:{label:{show:true,textStyle:{color:'#1b1b1b'}}}
+  },
+  data:[{name:'北京',value:10578.28},
+		{name:'天津',value: 7884.04},
+		{name:'河北',value:13798.13},
+		{name:'山西',value: 5814.18},
+		{name:'内蒙古',value: 7424.90},
+		{name:'辽宁',value:13004.97},
+		{name:'吉林',value: 5370.21},
+		{name:'黑龙江',value: 5435.25},
+		{name:'上海',value:11887.00},
+		{name:'江苏',value:33926.90},
+		{name:'浙江',value:19280.69},
+		{name:'安徽',value: 9976.57},
+		{name:'福建',value:10468.34},
+		{name:'江西',value: 7203.46},
+		{name:'山东',value:29731.68},
+		{name:'河南',value:16736.55},
+		{name:'湖北',value:13104.78},
+		{name:'湖南',value:12800.44},
+		{name:'广东',value:34526.64},
+		{name:'广西',value: 6769.45},
+		{name:'海南',value: 1808.57},
+		{name:'重庆',value: 7237.90},
+		{name:'四川',value:13300.06},
+		{name:'贵州',value: 4351.07},
+		{name:'云南',value: 5417.50},
+		{name:'西藏',value:  418.98},
+		{name:'陕西',value: 7898.36},
+		{name:'甘肃',value: 2612.88},
+		{name:'青海',value: 1011.28},
+		{name:'宁夏',value: 1128.03},
+		{name:'新疆',value: 3649.48}]
+  
+  
+  }]
+}
+;
+  myChart.setOption(options);
+  </script>
+  </body>
+  </html>

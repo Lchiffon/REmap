@@ -1,0 +1,150 @@
+<html>
+  <head>
+  <meta charset="utf-8">
+  <style type="text/css">
+  body {
+  margin: 0;
+  }
+  #main {
+  height: 100%;
+  }
+  </style>
+  </head>
+  <body>
+  <div id="main"></div>
+  <script src="./js/echarts.js"></script>
+  <script src = "./js/echarts-all.js"></script>
+  <script>
+  var myChart = echarts.init(document.getElementById("main"));
+  
+  var options = 
+{
+  backgroundColor: '#1b1b1b', 
+  color: ['gold','aqua','lime'],
+  title : {
+  text: '', 
+  subtext:'', 
+  x:'center',
+  textStyle : {
+  color: '#fff'  
+  }
+  },
+  tooltip : {
+  trigger: 'item',
+  formatter: '{b}'
+  },
+  toolbox: {
+  show : true,
+  orient : 'vertical',
+  x: 'right',
+  y: 'center',
+  feature : {
+  mark : {show: true},
+  dataView : {show: true, readOnly: false},
+  restore : {show: true},
+  saveAsImage : {show: true}
+  }
+  },
+  dataRange: {
+  min : 0,
+  show: false,
+  max : 100,
+  y: '60%',
+  calculable : true,
+  color: ['#ff3333', 'orange', 'yellow','lime','aqua']
+  },
+  
+  series : [
+  {
+  type:'map',
+  itemStyle:{
+  normal:{
+  borderColor:'rgba(100,149,237,1)', 
+  borderWidth: 0.5,
+  areaStyle:{
+  color: '#1b1b1b'  
+  }
+  }
+  },
+  data:[],
+  geoCoord: {'常州': [119.980142,31.816791],
+'北京': [116.413554,39.911013],
+'上海': [121.480237,31.236305],
+'广州': [113.270793,23.135308],
+'大连': [121.621391,38.919345],
+'南宁': [108.373351,22.823037],
+'南昌': [115.864528,28.687675],
+'拉萨': [91.121025,29.650088],
+'长春': [125.33017,43.82178],
+'包头': [109.846755,40.663636],
+'重庆': [106.557165,29.570997]},
+  
+  markLine : {
+  smooth:true,
+  effect : {
+  show: true,
+  scaleSize: 1,
+  period: 30,
+  color: '#fff',
+  shadowBlur: 10
+  },
+  itemStyle : {
+  color: 'red',
+  normal: {
+  borderWidth:1,
+  lineStyle: {
+  type: 'solid',
+  shadowBlur: 10
+  },
+  label:{show:false}
+  }
+  },
+  
+  data : [
+  [{name:'北京'}, {name:'上海',value: 30}],
+[{name:'北京'}, {name:'广州',value:100}],
+[{name:'北京'}, {name:'大连',value: 90}],
+[{name:'北京'}, {name:'南宁',value: 10}],
+[{name:'北京'}, {name:'南昌',value: 60}],
+[{name:'北京'}, {name:'拉萨',value:100}],
+[{name:'北京'}, {name:'长春',value: 70}],
+[{name:'北京'}, {name:'包头',value: 10}],
+[{name:'北京'}, {name:'重庆',value: 60}],
+[{name:'北京'}, {name:'常州',value: 60}]
+  ]
+  },
+  markPoint : {
+  symbol:'emptyCircle',
+  symbolSize : function (v){
+  return 10 + v/10
+  },
+  effect : {
+  show: true,
+  shadowBlur : 0
+  },
+  itemStyle:{
+  normal:{
+  label:{show:true}
+  }
+  },
+  data : [
+  {name:'上海',value: 30},
+{name:'广州',value:100},
+{name:'大连',value: 90},
+{name:'南宁',value: 10},
+{name:'南昌',value: 60},
+{name:'拉萨',value:100},
+{name:'长春',value: 70},
+{name:'包头',value: 10},
+{name:'重庆',value: 60},
+{name:'常州',value: 60}
+  ]	
+  }
+  }
+  ]
+  }
+;
+  myChart.setOption(options);	
+  </script>
+  </body>
+  </html>
