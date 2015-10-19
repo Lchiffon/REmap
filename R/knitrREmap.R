@@ -24,12 +24,13 @@
 
 knitrREmap = function(object,
                       height = "300px",
-                      width = "100%"){
-  
-  if(!dir.exists("js")){
-    dir.create("js")
+                      width = "100%",
+                      local = T){
+  if(local){
+    if(!dir.exists("js")){
+      dir.create("js")
+    }
   }
-  
   
   if(.Platform$OS.type == "windows"){
     locate = Sys.getlocale("LC_CTYPE")
@@ -80,26 +81,45 @@ knitrREmap = function(object,
   
   
 
-  
-  file_name = paste0(object@id,".js")
-  writeLines(content,
-             paste0("js/",file_name),
-             useBytes = T)
+  if(local){
+    file_name = paste0(object@id,".js")
+    writeLines(content,
+               paste0("js/",file_name),
+               useBytes = T)
+  }
   
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",locate)
   }
   
   
-  
+  if(local){
+    
   htmltools::tagList(
     ### initial for echarts svg
     htmltools::tag("div",list(
       id = object@id,
       style = sprintf("height:%s; width:%s",height,width))),
     
+    
     htmltools::tag("script",list(
       src = sprintf("js/%s.js",object@id))))
+    
+  }else{
+    
+    htmltools::tagList(
+      ### initial for echarts svg
+      htmltools::tag("div",list(
+        id = object@id,
+        style = sprintf("height:%s; width:%s",height,width))),
+      
+      
+      htmltools::tag("script",list(
+        content)))
+    
+    
+    
+  }
   
 }
 
