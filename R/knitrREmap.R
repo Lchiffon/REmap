@@ -60,8 +60,8 @@ knitrREmap = function(object,
                      object@option,
                      html.knitr.list$SVG.foot)
     
-    content = sub("#main",
-                   paste0("#",object@id)
+    content = sub("main",
+                   object@id
                    ,content)
     
   }
