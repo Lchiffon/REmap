@@ -90,6 +90,7 @@ remapC = function(data,
     stop("Column 2 should be numeric!")
   }
 
+  maptype = checkMapName(maptype)
   mapnames = mapNames(mapType = maptype)
 #   hit = sum(sapply(data[,1],function(x)
 #               sum(x %in% mapnames)))/length(mapnames)
@@ -107,10 +108,10 @@ remapC = function(data,
       paste0("{name:'",x[1],
              "',value:",x[2],",tooltipValue:",x[3],"}" ))
   }
-  
-  
+
+
   mapCData = paste(mapCVec,collapse = ',\n\t\t')
-  
+
   if(class(color) != 'character'){
     stop("Color should be a character object!")
   }
@@ -341,3 +342,9 @@ html.data.C = list(
   </body>
   </html>"
   )
+
+checkMapName = function(maptype){
+  maptype = tolower(maptype)
+  logi = maptype == mapCList[[37]]
+  return(names(mapCList)[which(logi)[1]%%37])
+}
