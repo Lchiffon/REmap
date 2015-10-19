@@ -185,7 +185,7 @@ remapH = function(data,
   output@id = paste('ID', format(Sys.time(), "%Y%m%d%H%M%S"),
                     proc.time()[3]*100, sep="_")
   output@theme = theme
-  output@maptype = "SVG"
+  output@maptype = "SVGH"
 
   output@option = html.data.H$option
   head = html.data.H$head
@@ -274,8 +274,10 @@ html.data.H = list(
 
   " ,
   option = "forChangekkkmmm
-  var heatData = [heatMapData]
-  var options = {
+  var heatData = [heatMapData];
+  var options = 
+  {
+
   backgroundColor: 'backgroundColorData',
   color: ['pointColorData','aqua','lime'],
   title : {

@@ -64,6 +64,18 @@ knitrREmap = function(object,
                    object@id
                    ,content)
     
+  }else if(object@maptype == "SVGH"){
+      
+      
+      ## write SVG content
+      content = paste0(html.knitr.list$SVGH.head,
+                       object@option,
+                       html.knitr.list$SVGH.foot)
+      
+      content = sub("main",
+                    object@id
+                    ,content)
+      
   }
   
   
@@ -105,5 +117,9 @@ var myChart = BMapExt.initECharts(container);
   
                        var options = ",
                        SVG.foot = ";
+  myChart.setOption(options);	",
+                       SVGH.head =
+    "  var myChart = echarts.init(document.getElementById(\"main\"));",
+                       SVGH.foot = ";
   myChart.setOption(options);	"
 )
