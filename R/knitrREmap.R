@@ -36,9 +36,9 @@ knitrREmap = function(object,
   }
   
     if(local){
-    if(!dir.exists("js")){
+    # if(!dir.exists("js")){
       dir.create("js")
-    }
+    # }
   }
   
   if(object@maptype == "Bmap"){
