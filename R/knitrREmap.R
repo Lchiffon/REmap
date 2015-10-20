@@ -25,19 +25,21 @@
 knitrREmap = function(object,
                       height = "300px",
                       width = "100%",
-                      local = T){
-  if(local){
-    if(!dir.exists("js")){
-      dir.create("js")
-    }
-  }
+                      local = F){
+
   
   if(.Platform$OS.type == "windows"){
     locate = Sys.getlocale("LC_CTYPE")
     Sys.setlocale("LC_CTYPE",
                   "chs")
+    local = T
   }
   
+    if(local){
+    if(!dir.exists("js")){
+      dir.create("js")
+    }
+  }
   
   if(object@maptype == "Bmap"){
   
