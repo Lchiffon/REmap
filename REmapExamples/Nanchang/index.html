@@ -70,7 +70,7 @@ strong{
 <ul>
 <li>商务工具: Tableau(Excel)</li>
 <li>GIS工具: ArcGIS</li>
-<li>前端工具: Echarts D3.js,...</li>
+<li>前端工具: Echarts.js D3.js,...</li>
 </ul></li>
 </ul>
 
@@ -85,8 +85,8 @@ strong{
 <li>静态地理信息:
 
 <ul>
-<li><code>maps</code>,</li>
-<li><code>ggmap</code>,</li>
+<li><code>maps</code></li>
+<li><code>ggmap</code></li>
 <li><code>choroplethr</code></li>
 </ul></li>
 <li>交互地理信息: 
@@ -107,13 +107,145 @@ strong{
     </aside>
    </section>
    <section class='' data-state=''>
-    <h2>R包的问题</h2>
+    <h2>静态化地图</h2>
 
-<ul class = "build incremental">
-<li>分级统计图版本较早</li>
-<li>google服务不可用</li>
-<li>中文支持问题</li>
+<ul>
+<li><code>maps</code></li>
+<li>最早的一批地理信息可视化</li>
+<li>US, world, china,...</li>
 </ul>
+
+<pre><code class="r">library(maps)
+library(mapdata)
+data(&quot;chinaMapEnv&quot;)
+map(&#39;china&#39;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/maps.png" alt="maps"></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>静态化地图</h2>
+
+<ul>
+<li><code>choroplethr</code></li>
+<li>海外很火的R包</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">library(choroplethr)
+library(choroplethrMaps)
+data(df_pop_country)
+country_choropleth(df_pop_country,
+                   title      = &quot;2012 Population Estimates&quot;,
+                   legend     = &quot;Population&quot;,
+                   num_colors = 1,
+                   zoom       = c(&quot;china&quot;, &quot;japan&quot;, 
+                                  &quot;north korea&quot;,&quot;south korea&quot;))
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/choroplethr.png" alt="choro"></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>实时静态地图</h2>
+
+<ul>
+<li><code>ggmap</code></li>
+</ul>
+
+<p><img src="pic/fensi.jpg" alt="fensi">
+<small><a href="http://cos.name/2013/06/weibo-fans-map-visualization/">http://cos.name/2013/06/weibo-fans-map-visualization/</a></small></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>实时静态地图</h2>
+
+<ul>
+<li>Sorry google
+<img src="pic/nipic.png" alt="google">
+<small><a href="http://nicpic.com">http://nicpic.com</a></small></li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>实时静态地图</h2>
+
+<ul>
+<li>HI baidu</li>
+<li>与ggplot2结合</li>
+<li>数据获取</li>
+</ul>
+
+<pre><code class="r">devtools::install.github(&quot;badbye/baidumap&quot;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">library(baidumap)
+p &lt;- getBaiduMap(&#39;南昌&#39;) # the same
+ggmap(p)+ geom_point(aes(x=115.9,y=28.7),size = 3,color=&#39;red&#39;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/baidumap.png" alt="baidu"></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>可交互地图</h2>
+
+<ul>
+<li><code>leaflet</code></li>
+<li><code>recharts</code></li>
+</ul>
+
+<pre><code class="r">library(leaflet)
+m = leaflet() %&gt;% addTiles()
+m = m %&gt;% setView(115.86453, 28.68767, zoom = 17)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/leaflet.png" alt="leaflet"></p>
 
     <aside class='notes'>
       
@@ -131,6 +263,18 @@ strong{
 <pre><code class="r">devtools::install_github(&#39;lchiffon/REmap&#39;)
 library(REmap)
 </code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <ul class = "build incremental">
+<li>动态可交互地图</li>
+<li>代码友好</li>
+<li>解决常用的地图需求</li>
+<li>期待更多的人接触Echarts</li>
+</ul>
 
     <aside class='notes'>
       
@@ -510,7 +654,7 @@ remapB(center = get_city_coord(&quot;江西财经大学北区&quot;),
 </tr>
 </tbody></table>
 
-<p><small>数据来源: <a href="http://cos.com">http://cos.com</a></small></p>
+<p><small>数据来源: <a href="http://cos.name">http://cos.name</a></small></p>
 
     <aside class='notes'>
       
@@ -642,27 +786,32 @@ remapB(markPointData = plotdata,
    </section>
 </section>
 <section class='' data-state='' id='slide-11'>
-  <h2>其他问题</h2>
-  <ul>
-<li>请优先使用Chorme浏览器</li>
-<li>请优先使用Linux/Mac系统</li>
-<li>Windows下请保证数据编码UTF-8</li>
-<li>任何bugs: 微博@郎大为Chiffon</li>
-</ul>
+  <h2><a href="http://lchiffon.github.com/">七风阁</a></h2>
+  <p><img src="pic/chiffon.png" alt="chiffon"></p>
 
 </section>
 <section class='' data-state='' id='slide-12'>
-  <h2>REmap主页</h2>
-  <p><a href="http://lchiffon.github.com/REmap">REmap主页</a></p>
-
-<p><img src="pic/home.png" alt="home"></p>
+  <h2><a href="http://lchiffon.github.com/REmap">REmap主页</a></h2>
+  <p><img src="pic/home.png" alt="home"></p>
 
 </section>
 <section class='' data-state='' id='slide-13'>
-  <h2>Thanks</h2>
-  <p><a href="http://lchiffon.github.com/REmap">REmap主页</a></p>
+  <h2><a href="xueqing.cc">雪晴网</a></h2>
+  <p><img src="pic/xueqing.png" alt="xueqing.cc"></p>
 
-<p><a href="http://chiffon.gitcafe.io">My Blog: 七风阁</a></p>
+</section>
+<section class='' data-state='' id='slide-14'>
+  <h2>Thanks</h2>
+  
+</section>
+<section class='' data-state='' id='slide-15'>
+  <h2>Q&amp;A</h2>
+  <ul>
+<li>微博@郎大为Chiffon</li>
+</ul>
+
+<p><a href="http://lchiffon.github.com/REmap">REmap主页</a>
+<a href="http://lchiffon.github.io">My Blog: 七风阁</a></p>
 
 <script>
 $('ul.incremental li').addClass('fragment')
