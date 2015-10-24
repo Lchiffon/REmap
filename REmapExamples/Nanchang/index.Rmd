@@ -86,13 +86,13 @@ strong{
 - 相关工具
   - 商务工具: Tableau(Excel)
   - GIS工具: ArcGIS
-  - 前端工具: Echarts D3.js,...
+  - 前端工具: Echarts.js D3.js,...
 
 ***
 ## 相关的R包
 - 静态地理信息:
-  + `maps`,
-  + `ggmap`,
+  + `maps`
+  + `ggmap`
   + `choroplethr`
 - 交互地理信息: 
   + `leaflet`
@@ -100,11 +100,109 @@ strong{
 - 辅助的R包:
   + `RgoogleMaps`, `mapdata`, `mapproj`, `baidumap`,...
 
+
+
 ***
-## R包的问题
->- 分级统计图版本较早
->- google服务不可用
->- 中文支持问题
+## 静态化地图
+- `maps`
+- 最早的一批地理信息可视化
+- US, world, china,...
+
+```{r eval=F}
+library(maps)
+library(mapdata)
+data("chinaMapEnv")
+map('china')
+```
+
+***
+![maps](pic/maps.png)
+
+
+***
+## 静态化地图
+- `choroplethr`
+- 海外很火的R包
+
+
+***
+```{r eval=F}
+library(choroplethr)
+library(choroplethrMaps)
+data(df_pop_country)
+country_choropleth(df_pop_country,
+                   title      = "2012 Population Estimates",
+                   legend     = "Population",
+                   num_colors = 1,
+                   zoom       = c("china", "japan", 
+                                  "north korea","south korea"))
+```
+
+
+
+***
+![choro](pic/choroplethr.png)
+
+
+
+***
+## 实时静态地图
+
+- `ggmap`
+
+![fensi](pic/fensi.jpg)
+<small>http://cos.name/2013/06/weibo-fans-map-visualization/</small>
+
+
+***
+## 实时静态地图
+- Sorry google
+![google](pic/nipic.png)
+<small>http://nicpic.com</small>
+
+
+
+
+***
+## 实时静态地图
+- HI baidu
+- 与ggplot2结合
+- 数据获取
+```{r eval=F}
+devtools::install.github("badbye/baidumap")
+```
+
+
+***
+
+```{r eval=F}
+library(baidumap)
+p <- getBaiduMap('南昌') # the same
+ggmap(p)+ geom_point(aes(x=115.9,y=28.7),size = 3,color='red')
+```
+
+
+***
+![baidu](pic/baidumap.png)
+
+
+
+***
+## 可交互地图
+- `leaflet`
+- `recharts`
+
+```{r eval=F}
+library(leaflet)
+m = leaflet() %>% addTiles()
+m = m %>% setView(115.86453, 28.68767, zoom = 17)
+```
+
+***
+![leaflet](pic/leaflet.png)
+
+
+
 
 
 --- &vertical ds:soothe
@@ -118,6 +216,12 @@ strong{
 devtools::install_github('lchiffon/REmap')
 library(REmap)
 ```
+
+***
+>- 动态可交互地图
+>- 代码友好
+>- 解决常用的地图需求
+>- 期待更多的人接触Echarts
 
 ***
 ![remap](pic/remap.png)
@@ -336,7 +440,7 @@ place | name | time
 ... | ... | ... | ...
 
 
-<small>数据来源: http://cos.com</small>
+<small>数据来源: http://cos.name</small>
 
 ***
 ```{r eval = F}
@@ -428,24 +532,32 @@ remapB(markPointData = plotdata,
 
 
 ---
-## 其他问题
-- 请优先使用Chorme浏览器
-- 请优先使用Linux/Mac系统
-- Windows下请保证数据编码UTF-8
-- 任何bugs: 微博@郎大为Chiffon
+## [七风阁](http://lchiffon.github.com/)
+
+![chiffon](pic/chiffon.png)
+
 
 ---
-## REmap主页
-[REmap主页](http://lchiffon.github.com/REmap)
+## [REmap主页](http://lchiffon.github.com/REmap)
 
 ![home](pic/home.png)
 
 ---
+## [雪晴网](xueqing.cc)
+
+
+![xueqing.cc](pic/xueqing.png)
+
+---
 ## Thanks
 
-[REmap主页](http://lchiffon.github.com/REmap)
 
-[My Blog: 七风阁](http://chiffon.gitcafe.io)
+---
+## Q&A
+- 微博@郎大为Chiffon
+
+[REmap主页](http://lchiffon.github.com/REmap)
+[My Blog: 七风阁](http://lchiffon.github.io)
 <script>
 $('ul.incremental li').addClass('fragment')
 </script>

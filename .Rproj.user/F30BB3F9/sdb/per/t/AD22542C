@@ -1,0 +1,17 @@
+{
+    "contents" : "---\ntitle: \"Untitled\"\nauthor: \"Chiffon\"\ndate: \"18 October 2015\"\noutput: html_document\n---\n\n```{r}\nlibrary(REmap)\n\n```\n\n\n\n```{r}\ndata = data.frame(place = mapNames(\"beijing\"),\n                  value = rnorm(18)*100)\n```\n\n\n```{r}\nremap.init()\np = remapC(data = data,maptype = \"beijing\")\nknitrREmap(p)\n```\n\n",
+    "created" : 1445257470421.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2958348513",
+    "id" : "AD22542C",
+    "lastKnownWriteTime" : 1445257592,
+    "path" : "C:/Users/Administrator/Desktop/1.Rmd",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}
