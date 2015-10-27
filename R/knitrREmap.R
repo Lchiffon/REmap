@@ -32,7 +32,7 @@ knitrREmap = function(object,
     locate = Sys.getlocale("LC_CTYPE")
     Sys.setlocale("LC_CTYPE",
                   "chs")
-    local = T
+ #   local = T
   }
   
     if(local){
