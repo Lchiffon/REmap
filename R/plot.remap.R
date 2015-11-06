@@ -63,7 +63,14 @@ local.plot = function(object,file_name){
                   content)
   }
 
-
+  if(object@maptype == 'SVGH'){
+    content = sub("http://echarts.baidu.com/build/dist/echarts.js",
+                  "./js/echarts.js",
+                  object@content)
+    content = sub("http://echarts.baidu.com/build/dist/echarts-all.js",
+                  "./js/echarts-all.js",
+                  content)
+  }
   ## Bmap rewrite JS path
   if(object@maptype == "Bmap"){
     content = sub("http://echarts.baidu.com/build/dist/echarts.js",
