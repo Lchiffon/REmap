@@ -27,7 +27,7 @@ get_geo_position = function(city_vec,cache_data = 'city',...){
   #city data load("data/city.Rdata")
 
   if(cache_data == 'city'){
-    cache = city
+    cache = REmapCityGeo
   }else if(cache_data == 'airport'){
     cache = airport
   }else if(cache_data == 'none'){
