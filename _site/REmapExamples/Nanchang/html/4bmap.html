@@ -1,0 +1,208 @@
+<html>
+  <head>
+                <meta charset='utf-8'>
+                <style type='text/css'>
+                body {
+                margin: 0;
+                }
+                #main {
+                height: 100%;
+                }
+                </style>
+                </head>
+                <body>
+                <div id='main'></div>
+                <script src='./js/echarts.js'></script>
+                <script type='text/javascript' src='http://api.map.baidu.com/api?v=2.0&ak=q9U1lWgCK1aBGVC1DVWrgWa7'></script>
+                <script src='./js/jquery.min.js'></script>
+                <script>
+
+                (function () {
+                require.config({
+                paths: {
+                echarts:'http://echarts.baidu.com/doc/example/www/js'
+                },
+                packages: [
+                {
+                name: 'BMap',
+                location: './js',
+                main: 'main'
+                }
+                ]
+                });
+
+                require(
+                [
+                'echarts',
+                'BMap',
+                'echarts/chart/map'
+                ],
+                function (echarts, BMapExtension) {
+
+                var BMapExt = new BMapExtension($('#main')[0], BMap, echarts,{
+                enableMapClick: false
+                });
+                var map = BMapExt.getMap();
+                var container = BMapExt.getEchartsContainer();
+
+                var startPoint = {
+                x: 104.114129,
+                y: 37.550339
+                };
+                var point = new BMap.Point(startPoint.x, startPoint.y);
+                map.centerAndZoom(point, 5);
+                map.enableScrollWheelZoom(true);
+                
+
+
+option = {
+  color: ['gold','aqua','lime'],
+  title : {
+    text: '',
+    subtext: '',
+    x:'center',
+    textStyle : {
+      color: 'black'
+    }
+  },
+  tooltip : {
+    show: true,
+    trigger: 'item',
+    formatter: function (v) {
+               if(v[2].tooltipValue!=null){
+               return v[2].tooltipValue;
+               }else{
+               return v[1];
+               }
+  }},
+  toolbox: {
+    show : true,
+    orient : 'vertical',
+    x: 'right',
+    y: 'center',
+    feature : {
+      mark : {show: true},
+      dataView : {show: true, readOnly: false},
+      restore : {show: true},
+      saveAsImage : {show: true}
+    }
+  },
+  series : [
+    {
+      type:'map',
+      mapType: 'none',
+      data:[]
+      
+  ,markLine : {
+    Symbol:['none', 'arrow'],
+    symbolSize:['2', '4'],
+    smooth:true,
+    smooth:0.2,
+    effect : {
+      show: true,
+      scaleSize: 1,
+      period: 30,
+      color: '#fff',
+      shadowBlur: 10
+    },
+    itemStyle : {
+      color: 'red',
+      normal: {
+        color:function(param){
+      return(param.data[0].value.colorValue);
+  },
+        borderWidth:1,
+        lineStyle: {
+          type: 'solid',
+          width: 1,
+          shadowBlur: 10
+        },
+        label:{show:false}
+      }
+    },
+
+    data : [[{name:'北京'}, {name:'上海',value:{colorValue:'orange'}}],
+[{name:'北京'}, {name:'广州',value:{colorValue:'#ff3333'}}],
+[{name:'北京'}, {name:'大连',value:{colorValue:'yellow'}}],
+[{name:'北京'}, {name:'南宁',value:{colorValue:'aqua'}}],
+[{name:'北京'}, {name:'南昌',value:{colorValue:'aqua'}}],
+[{name:'北京'}, {name:'拉萨',value:{colorValue:'orange'}}],
+[{name:'北京'}, {name:'长春',value:{colorValue:'yellow'}}],
+[{name:'北京'}, {name:'包头',value:{colorValue:'orange'}}],
+[{name:'北京'}, {name:'重庆',value:{colorValue:'aqua'}}],
+[{name:'北京'}, {name:'常州',value:{colorValue:'orange'}}]]},
+    geoCoord:{'常州': [119.98014,31.81679],
+'北京': [116.41355,39.91101],
+'上海': [121.48024,31.23631],
+'广州': [113.27079,23.13531],
+'大连': [121.62139,38.91934],
+'南宁': [108.37335,22.82304],
+'南昌': [115.86453,28.68767],
+'拉萨': [ 91.12103,29.65009],
+'长春': [125.33017,43.82178],
+'包头': [109.84676,40.66364],
+'重庆': [106.55716,29.57100]
+    }
+  
+      ,markPoint : {
+        symbol:'emptyCircle',
+      symbolSize :function (v){
+  return(10+Math.round(Math.random()*10));
+},
+      effect : {
+        show: true,
+        type: 'scale',
+        shadowBlur : 0
+      },
+      itemStyle:{
+      normal:{
+        label:{show:false},
+        color:function(param){
+    return(param.data.value.colorValue);
+  }
+      },
+      emphasis: {
+        label:{show:false}
+      }
+      },
+      data : [{name:'上海',value:{colorValue:'aqua'},symbol:'emptyCircle'},
+{name:'广州',value:{colorValue:'aqua'},symbol:'emptyCircle'},
+{name:'大连',value:{colorValue:'#ff3333'},symbol:'emptyCircle'},
+{name:'南宁',value:{colorValue:'orange'},symbol:'emptyCircle'},
+{name:'南昌',value:{colorValue:'#ff3333'},symbol:'emptyCircle'},
+{name:'拉萨',value:{colorValue:'yellow'},symbol:'emptyCircle'},
+{name:'长春',value:{colorValue:'lime'},symbol:'emptyCircle'},
+{name:'包头',value:{colorValue:'aqua'},symbol:'emptyCircle'},
+{name:'重庆',value:{colorValue:'yellow'},symbol:'emptyCircle'},
+{name:'常州',value:{colorValue:'yellow'},symbol:'emptyCircle'}
+      ]},
+      geoCoord:{'常州': [119.98014,31.81679],
+'北京': [116.41355,39.91101],
+'上海': [121.48024,31.23631],
+'广州': [113.27079,23.13531],
+'大连': [121.62139,38.91934],
+'南宁': [108.37335,22.82304],
+'南昌': [115.86453,28.68767],
+'拉萨': [ 91.12103,29.65009],
+'长春': [125.33017,43.82178],
+'包头': [109.84676,40.66364],
+'重庆': [106.55716,29.57100]
+                  }
+                  
+
+    },
+    ]
+};
+
+
+var myChart = BMapExt.initECharts(container);
+window.onresize = myChart.onresize;
+BMapExt.setOption(option);
+                }
+                );
+                })();
+</script>
+  </body>
+  </html>
+
+  

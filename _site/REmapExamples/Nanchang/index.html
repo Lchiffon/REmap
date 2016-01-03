@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Introduction to R</title>
+  <meta name="description" content="">
+  <meta name="author" content="Chiffon">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/Sky.css" id="theme">
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" id="theme">
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  
+  <style>
+
+.title-slide {
+  background-color: #e2e2e2;
+}
+
+.title-slide hgroup > h1{
+  font-family: 'Oswald', sans-serif;
+  color: #202020;
+}
+
+.title-slide hgroup > h2{
+  font-family: 'Signika Negative', 'Calibri', sans-serif;
+  color: #202020;
+}
+
+
+strong{
+ color: #4876FF;
+}
+</style>
+
+<h2>REmap</h2>
+
+<h3>重新定义你的地图</h3>
+
+<p><small> Created by <a href="http://chiffon.gitcafe.io">Chiffon</a>郎大为</small><br/>
+<small>Supstat. Inc 数据科学家</small></p>
+
+<script src="./libraries/jquery.min.js"></script>
+
+<script>
+            document.write( '<link rel="stylesheet" href="libraries/frameworks/revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+</section>
+<section>
+   <section class='' data-state=''>
+    <h2>地理信息的可视化</h2>
+    <ul>
+<li><p>目的:</p>
+
+<ul>
+<li>认识数据</li>
+<li>展示数据</li>
+</ul></li>
+<li><p>相关工具</p>
+
+<ul>
+<li>商务工具: Tableau(Excel)</li>
+<li>GIS工具: ArcGIS</li>
+<li>前端工具: Echarts.js D3.js,...</li>
+</ul></li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>相关的R包</h2>
+
+<ul>
+<li>静态地理信息:
+
+<ul>
+<li><code>maps</code></li>
+<li><code>ggmap</code></li>
+<li><code>choroplethr</code></li>
+</ul></li>
+<li>交互地理信息: 
+
+<ul>
+<li><code>leaflet</code></li>
+<li><code>googleVis</code></li>
+</ul></li>
+<li>辅助的R包:
+
+<ul>
+<li><code>RgoogleMaps</code>, <code>mapdata</code>, <code>mapproj</code>, <code>baidumap</code>,...</li>
+</ul></li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>静态化地图</h2>
+
+<ul>
+<li><code>maps</code></li>
+<li>最早的一批地理信息可视化</li>
+<li>US, world, china,...</li>
+</ul>
+
+<pre><code class="r">library(maps)
+library(mapdata)
+data(&quot;chinaMapEnv&quot;)
+map(&#39;china&#39;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/maps.png" alt="maps"></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>静态化地图</h2>
+
+<ul>
+<li><code>choroplethr</code></li>
+<li>海外很火的R包</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">library(choroplethr)
+library(choroplethrMaps)
+data(df_pop_country)
+country_choropleth(df_pop_country,
+                   title      = &quot;2012 Population Estimates&quot;,
+                   legend     = &quot;Population&quot;,
+                   num_colors = 1,
+                   zoom       = c(&quot;china&quot;, &quot;japan&quot;, 
+                                  &quot;north korea&quot;,&quot;south korea&quot;))
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/choroplethr.png" alt="choro"></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>实时静态地图</h2>
+
+<ul>
+<li><code>ggmap</code></li>
+</ul>
+
+<p><img src="pic/fensi.jpg" alt="fensi">
+<small><a href="http://cos.name/2013/06/weibo-fans-map-visualization/">http://cos.name/2013/06/weibo-fans-map-visualization/</a></small></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>实时静态地图</h2>
+
+<ul>
+<li>Sorry google
+<img src="pic/nipic.png" alt="google">
+<small><a href="http://nicpic.com">http://nicpic.com</a></small></li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>实时静态地图</h2>
+
+<ul>
+<li>HI baidu</li>
+<li>与ggplot2结合</li>
+<li>数据获取</li>
+</ul>
+
+<pre><code class="r">devtools::install.github(&quot;badbye/baidumap&quot;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">library(baidumap)
+p &lt;- getBaiduMap(&#39;南昌&#39;) # the same
+ggmap(p)+ geom_point(aes(x=115.9,y=28.7),size = 3,color=&#39;red&#39;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/baidumap.png" alt="baidu"></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>可交互地图</h2>
+
+<ul>
+<li><code>leaflet</code></li>
+<li><code>recharts</code></li>
+</ul>
+
+<pre><code class="r">library(leaflet)
+m = leaflet() %&gt;% addTiles()
+m = m %&gt;% setView(115.86453, 28.68767, zoom = 17)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/leaflet.png" alt="leaflet"></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state='soothe'>
+    <h2>REmap</h2>
+    <ul>
+<li><p>REmap是一个基于<a href="http://echarts.baidu.com">Echarts</a> 的R包.</p></li>
+<li><p>提供一个简便,可交互的地图数据可视化工具.目前托管在<a href="https://github.com/lchiffon/REmap">github</a></p></li>
+</ul>
+
+<pre><code class="r">devtools::install_github(&#39;lchiffon/REmap&#39;)
+library(REmap)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <ul class = "build incremental">
+<li>动态可交互地图</li>
+<li>代码友好</li>
+<li>解决常用的地图需求</li>
+<li>期待更多的人接触Echarts</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/remap.png" alt="remap"></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>基本原理</h2>
+
+<ul class = "build incremental">
+<li>使用R处理传入的数据</li>
+<li>写出Javascript脚本(Echarts)</li>
+<li>保存在临时的html文件中</li>
+<li>调用浏览器展示</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3>不需要的</h3>
+
+<ul class = "build incremental">
+<li>不需要懂html</li>
+<li>不需要懂Javascript/Echarts</li>
+</ul>
+
+<h3>需要的</h3>
+
+<ul class = "build incremental">
+<li>R</li>
+<li>Chorme或者Firefox作为默认浏览器</li>
+<li>UTF-8编码的数据框</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section class='' data-state='' id='slide-4'>
+  
+  <p><a href="./html/remap.html"  target="_blank"> <huge>remap(demoC)</huge></a></p>
+
+</section>
+<section>
+   <section class='' data-state='soothe'>
+    <h2>分级统计图</h2>
+    <ul>
+<li>使用颜色的深浅来展示数据</li>
+<li>应用最广泛的地理位置可视化之一</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <table><thead>
+<tr>
+<th>省份</th>
+<th>GDP(亿元)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>北京</td>
+<td>10578.28</td>
+</tr>
+<tr>
+<td>天津</td>
+<td>7884.04</td>
+</tr>
+<tr>
+<td>河北</td>
+<td>13798.13</td>
+</tr>
+<tr>
+<td>上海</td>
+<td>11887</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody></table>
+
+<p><small>数据来源: 中国统计年鉴2015年第二季度GDP</small></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">library(REmap)
+GDP = read.csv(&quot;data/GDP.csv&quot;,encoding = &quot;UTF-8&quot;)
+remapC(GDP,
+         color = c(&quot;red&quot;,&quot;yellow&quot;),
+         title = &quot;2015年第二季度中国各省份GDP(亿元)&quot;,
+         subtitle = &quot;数据来源中国统计年鉴&quot;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/c1.png" alt="c1"></p>
+
+<p><a href="./html/1GDP.html"  target="_blank">Link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <table><thead>
+<tr>
+<th>city</th>
+<th>space</th>
+<th>population</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>南昌市</td>
+<td>7402.36</td>
+<td>504.3</td>
+</tr>
+<tr>
+<td>九江市</td>
+<td>18823</td>
+<td>485</td>
+</tr>
+<tr>
+<td>上饶市</td>
+<td>22791</td>
+<td>740</td>
+</tr>
+<tr>
+<td>抚州市</td>
+<td>18817</td>
+<td>400</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody></table>
+
+<p><small>数据来源: <a href="http://baike.baidu.com">http://baike.baidu.com</a></small></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">popu = read.csv(&quot;data/jiangxi.csv&quot;,encoding = &quot;UTF-8&quot;)
+plotdata = data.frame(city = popu$city,
+                             density = popu$population/popu$space*1e4)
+remapC(data = plotdata,maptype = &quot;江西&quot;,
+         title = &quot;江西人口密度(人/平方公里)&quot;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/c2.png" alt="c2"></p>
+
+<p><a href="./html/2Jiangxi.html"  target="_blank">Link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state='soothe'>
+    <h2>Bmap</h2>
+    
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <table><thead>
+<tr>
+<th>出发点</th>
+<th>到达点</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>北京</td>
+<td>上海</td>
+</tr>
+<tr>
+<td>北京</td>
+<td>广州</td>
+</tr>
+<tr>
+<td>北京</td>
+<td>大连</td>
+</tr>
+<tr>
+<td>北京</td>
+<td>南宁</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody></table>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/c3.png" alt="c3"></p>
+
+<p>remap(demoC,theme = get_theme(&quot;Bright&quot;))</p>
+
+<p><a href="./html/3remap.html"  target="_blank">Link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">remapB(markLineData = demoC,
+         markPointData = demoC[,2])
+
+# remapB(markLineData = demoC,
+#        markPointData = demoC[,2],color = &quot;Blue&quot;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/1-1.png" alt="1"></p>
+
+<p><a href="./html/4bmap.html"  target="_blank">link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/1.png" alt="1-1"></p>
+
+<p><a href="./html/4bmap2.html"  target="_blank">link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state='soothe'>
+    <h2>Bmap</h2>
+    <h3>城市级地图</h3>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">## 获取线路
+library(baidumap)
+df = getRoute(&#39;南昌西站&#39;, &#39;江西财经大学北区&#39;,region=&quot;南昌&quot;)
+## 准备数据
+df$label = paste(&quot;Point&quot;,1:dim(df)[1])
+markLinedata = data.frame(origin = df$label[-dim(df)[1]],
+                                  destination = df$label[-1])
+## 绘制地图
+remapB(center = get_city_coord(&quot;南昌&quot;),
+         zoom = 13,
+         markLineData = markLinedata,geoData = df,
+         markLineTheme = markLineControl(smoothness = 0,
+                                                  effect = T,
+                                                  symbolSize = c(0,0)))
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/2.png" alt="2"></p>
+
+<p><a href="./html/5route.html"  target="_blank">link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">## 获取数据
+barbeque = getPlace(&#39;烧烤&#39;, &#39;南昌&#39;)
+## 准备数据
+barbeque$tooltip = paste(barbeque$name,
+                                 barbeque$address,
+                                 barbeque$telephone,sep = &quot;&lt;br/&gt;&quot;)
+geodata = data.frame(barbeque$lon,
+                            barbeque$lat,
+                            barbeque$name)
+## 绘制数据
+remapB(center = get_city_coord(&quot;江西财经大学北区&quot;),
+         zoom = 15,
+         markPointData = barbeque,
+         geoData = geodata,
+         markPointTheme = markPointControl(effect = F,symbol = &quot;pin&quot;,
+                                                     symbolSize = 7,
+                                                     color=&quot;red&quot;),
+         title=&quot;南昌烧烤分布&quot;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/3.png" alt="3"></p>
+
+<p><a href="./html/6barbeque.html"  target="_blank">link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state='soothe'>
+    <h2>2015中国R语言会议</h2>
+    
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <table><thead>
+<tr>
+<th>place</th>
+<th>name</th>
+<th>time</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>西安</td>
+<td>2015数据与价值欧亚论坛暨R会议西安分论坛</td>
+<td>2015年4月18日</td>
+</tr>
+<tr>
+<td>广州</td>
+<td>中国R语言（广州）会议-暨华南地区数据科学会议</td>
+<td>2015年5月23-24日</td>
+</tr>
+<tr>
+<td>北京</td>
+<td>第八届中国R语言会议（北京）</td>
+<td>2015年6月6-7日</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody></table>
+
+<p><small>数据来源: <a href="http://cos.name">http://cos.name</a></small></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">## 读取数据
+rCon = read.csv(&quot;data/R-con.csv&quot;,encoding = &quot;UTF-8&quot;)
+## 准备数据
+rCon$pic = paste0(&quot;&lt;img src=&quot;,rCon$pic,&quot; width=300px /&gt;&quot;)
+plotdata = data.frame(place = rCon$place,
+                             symbol = &quot;image://./pic/cos.png&quot;,
+                             tooltip = paste(rCon$name,rCon$time,rCon$pic,sep = &quot;&lt;br/&gt;&quot;))
+## 绘制地图
+remapC(data = chinaIphone,
+         color = c(&quot;white&quot;,&quot;white&quot;),
+         markPointData = plotdata,
+         markPointTheme = markPointControl(effect = F,
+                                                     symbolSize = 30),
+         title = &quot;2015中国R语言会议&quot;
+         )
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/7.png" alt="7"></p>
+
+<p><a href="./html/7COS.html"  target="_blank">link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state='soothe'>
+    <h2>最早的数据产品</h2>
+    
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>什么算一个数据产品</h2>
+
+<ul>
+<li>数据驱动</li>
+<li>建模预测</li>
+<li>较好的可视化来展示结果</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>天气预报</h2>
+
+<ul class = "build incremental">
+<li>数据驱动</li>
+<li>建模预测</li>
+<li>较好的可视化来展示结果</li>
+<li>如果能更准确点...</li>
+</ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <pre><code class="r">cityvec = c(&quot;上海&quot;,
+            &quot;广州&quot;,&quot;大连&quot;,&quot;南宁&quot;,&quot;南昌&quot;,&quot;拉萨&quot;,&quot;长春&quot;,&quot;包头&quot;,
+            &quot;重庆&quot;,&quot;武汉&quot;,&quot;北京&quot;,&quot;洛阳&quot;,&quot;台北&quot;,&quot;乌鲁木齐&quot;,&quot;沈阳&quot;,
+            &quot;西安&quot;,&quot;成都&quot;,&quot;合肥&quot;,&quot;长沙&quot;,&quot;济南&quot;,&quot;福州&quot;,&quot;兰州&quot;)
+weather = sapply(cityvec,get_weather_str)
+plotdata = data.frame(cityvec,
+                      tooltip=paste0(cityvec,weather[1,]),
+                      symbol = weather[2,])
+remapB(markPointData = plotdata,
+       markPointTheme = markPointControl(symbolSize = 25,
+                                         effect = F),
+       color = &quot;Blue&quot;,
+       title = &quot;未来天气预报&quot;,
+       subtitle = &quot;by REmap, Chiffon&quot;)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/4.png" alt="4"></p>
+
+<p><a href="./html/8weather.html"  target="_blank">link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section>
+   <section class='' data-state='soothe'>
+    <h2>美好的未来</h2>
+    
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/5.png" alt="5"></p>
+
+<p><a href="./html/demo1.html"  target="_blank">link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <p><img src="pic/6.png" alt="6"></p>
+
+<p><a href="./html/demo2.html" target="_blank">link</a></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+</section>
+<section class='' data-state='' id='slide-11'>
+  <h2><a href="http://lchiffon.github.com/">七风阁</a></h2>
+  <p><img src="pic/chiffon.png" alt="chiffon"></p>
+
+</section>
+<section class='' data-state='' id='slide-12'>
+  <h2><a href="http://lchiffon.github.com/REmap">REmap主页</a></h2>
+  <p><img src="pic/home.png" alt="home"></p>
+
+</section>
+<section class='' data-state='' id='slide-13'>
+  <h2><a href="http://xueqing.cc">雪晴网</a></h2>
+  <p><img src="pic/xueqing.png" alt="xueqing.cc"></p>
+
+</section>
+<section class='' data-state='' id='slide-14'>
+  <h2>Thanks</h2>
+  
+</section>
+<section class='' data-state='' id='slide-15'>
+  <h2>Q&amp;A</h2>
+  <ul>
+<li>微博@郎大为Chiffon</li>
+</ul>
+
+<p><a href="http://lchiffon.github.com/REmap">REmap主页</a>
+<a href="http://lchiffon.github.io">My Blog: 七风阁</a></p>
+
+<script>
+$('ul.incremental li').addClass('fragment')
+</script>
+
+</section>
+    </div>
+  </div>
+</body>
+  <script src="libraries/frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="libraries/frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme || 'Sky', 
+    transition: Reveal.getQueryHash().transition || 'slide', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: 'libraries/frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: 'libraries/frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'libraries/frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'libraries/frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  <!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>

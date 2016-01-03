@@ -1,0 +1,104 @@
+<html>
+  <head>
+  <meta charset="utf-8">
+  <style type="text/css">
+  body {
+  margin: 0;
+  }
+  #main {
+  height: 100%;
+  }
+  </style>
+  </head>
+  <body>
+  <div id="main"></div>
+  <script src="./js/echarts.js"></script>
+  <script src = "./js/echarts-all.js"></script>
+  <script>
+  var myChart = echarts.init(document.getElementById("main"));
+
+  var options = 
+{
+  backgroundColor: '#D9D9D9',
+  color: ['gold','aqua','lime'],
+  title : {
+    text: '江西人口密度(人/平方公里)',
+    subtext:'',
+    x:'center',
+    textStyle : {
+      color: '#1b1b1b'
+    }
+  },
+  tooltip : {
+    trigger: 'item',
+    formatter: function (v) {
+			if(typeof(v[2])=='number'){
+			return(v[1]+': '+v[2])
+			}else if(v[2].tooltipValue!=null){
+          	return v[2].tooltipValue;
+          }else{
+            return v[1];
+          }
+  }},
+    legend: {
+        show:false,
+        orient: 'vertical',
+        x:'left',
+        data:['Data'],
+      	textStyle:{color:'#D9D9D9'}
+
+    },
+  toolbox: {
+    show : true,
+    orient : 'vertical',
+    x: 'right',
+    y: 'center',
+    feature : {
+      mark : {show: true},
+      dataView : {show: true, readOnly: false},
+      restore : {show: true},
+      saveAsImage : {show: true}
+    }
+  },
+  dataRange: {
+    min : 156,
+    max : 753,
+    calculable : true,
+    color: ['#1e90ff', '#f0ffff'],
+    textStyle:{
+      color:'#1b1b1b'
+    }
+  },
+  series : [
+    {
+    name:'Data',
+    type:'map',
+    mapType: '江西',
+    itemStyle:{
+    normal:{
+    borderColor:'rgba(100,149,237,1)',
+    borderWidth: 0.5,
+    label:{show:true,textStyle:{color:'#1b1b1b'}},
+    },
+    emphasis:{label:{show:true,textStyle:{color:'#1b1b1b'}}}
+  },
+  data:[{name:'南昌市',value:681.2692},
+		{name:'九江市',value:257.6635},
+		{name:'上饶市',value:324.6896},
+		{name:'抚州市',value:212.5737},
+		{name:'宜春市',value:294.6060},
+		{name:'吉安市',value:190.7292},
+		{name:'赣州市',value:235.3246},
+		{name:'景德镇市',value:323.9329},
+		{name:'萍乡市',value:491.8464},
+		{name:'新余市',value:376.1062},
+		{name:'鹰潭市',value:717.5014}]
+  
+  
+  }]
+}
+;
+  myChart.setOption(options);
+  </script>
+  </body>
+  </html>

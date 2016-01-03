@@ -87,7 +87,7 @@ remapB = function(center = c(104.114129,37.550339),
     }else{
       # it's a vector
       cityNames = c(cityNames,
-                    as.character(markPointData[,1]))
+                    as.character(markPointData))
     }
 
     geoData = get_geo_position(unique(cityNames))

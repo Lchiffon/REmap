@@ -1,0 +1,309 @@
+<html>
+  <head>
+                <meta charset='utf-8'>
+                <style type='text/css'>
+                body {
+                margin: 0;
+                }
+                #main {
+                height: 100%;
+                }
+                </style>
+                </head>
+                <body>
+                <div id='main'></div>
+                <script src='./js/echarts.js'></script>
+                <script type='text/javascript' src='http://api.map.baidu.com/api?v=2.0&ak=q9U1lWgCK1aBGVC1DVWrgWa7'></script>
+                <script src='./js/jquery.min.js'></script>
+                <script>
+
+                (function () {
+                require.config({
+                paths: {
+                echarts:'http://echarts.baidu.com/doc/example/www/js'
+                },
+                packages: [
+                {
+                name: 'BMap',
+                location: './js',
+                main: 'main'
+                }
+                ]
+                });
+
+                require(
+                [
+                'echarts',
+                'BMap',
+                'echarts/chart/map'
+                ],
+                function (echarts, BMapExtension) {
+
+                var BMapExt = new BMapExtension($('#main')[0], BMap, echarts,{
+                enableMapClick: false
+                });
+                var map = BMapExt.getMap();
+                var container = BMapExt.getEchartsContainer();
+
+                var startPoint = {
+                x: 104.114129,
+                y: 37.550339
+                };
+                var point = new BMap.Point(startPoint.x, startPoint.y);
+                map.centerAndZoom(point, 5);
+                map.enableScrollWheelZoom(true);
+                map.setMapStyle({
+    styleJson: [
+    {
+    'featureType': 'water',
+    'elementType': 'all',
+    'stylers': {
+    'color': '#044161'
+    }
+    },
+    {
+    'featureType': 'land',
+    'elementType': 'all',
+    'stylers': {
+    'color': '#004981'
+    }
+    },
+    {
+    'featureType': 'boundary',
+    'elementType': 'geometry',
+    'stylers': {
+    'color': '#064f85'
+    }
+    },
+    {
+    'featureType': 'railway',
+    'elementType': 'all',
+    'stylers': {
+    'visibility': 'off'
+    }
+    },
+    {
+    'featureType': 'highway',
+    'elementType': 'geometry',
+    'stylers': {
+    'color': '#004981'
+    }
+    },
+    {
+    'featureType': 'highway',
+    'elementType': 'geometry.fill',
+    'stylers': {
+    'color': '#005b96',
+    'lightness': 1
+    }
+    },
+    {
+    'featureType': 'highway',
+    'elementType': 'labels',
+    'stylers': {
+    'visibility': 'off'
+    }
+    },
+    {
+    'featureType': 'arterial',
+    'elementType': 'geometry',
+    'stylers': {
+    'color': '#004981'
+    }
+    },
+    {
+    'featureType': 'arterial',
+    'elementType': 'geometry.fill',
+    'stylers': {
+    'color': '#00508b'
+    }
+    },
+    {
+    'featureType': 'poi',
+    'elementType': 'all',
+    'stylers': {
+    'visibility': 'off'
+    }
+    },
+    {
+    'featureType': 'green',
+    'elementType': 'all',
+    'stylers': {
+    'color': '#056197',
+    'visibility': 'off'
+    }
+    },
+    {
+    'featureType': 'subway',
+    'elementType': 'all',
+    'stylers': {
+    'visibility': 'off'
+    }
+    },
+    {
+    'featureType': 'manmade',
+    'elementType': 'all',
+    'stylers': {
+    'visibility': 'off'
+    }
+    },
+    {
+    'featureType': 'local',
+    'elementType': 'all',
+    'stylers': {
+    'visibility': 'off'
+    }
+    },
+    {
+    'featureType': 'arterial',
+    'elementType': 'labels',
+    'stylers': {
+    'visibility': 'off'
+    }
+    },
+    {
+    'featureType': 'boundary',
+    'elementType': 'geometry.fill',
+    'stylers': {
+    'color': '#029fd4'
+    }
+    },
+    {
+    'featureType': 'building',
+    'elementType': 'all',
+    'stylers': {
+    'color': '#1a5787'
+    }
+    },
+    {
+    'featureType': 'label',
+    'elementType': 'all',
+    'stylers': {
+    'visibility': 'off'
+    }
+    }
+    ]
+  });
+
+
+option = {
+  color: ['gold','aqua','lime'],
+  title : {
+    text: '未来天气预报',
+    subtext: 'by REmap, Chiffon',
+    x:'center',
+    textStyle : {
+      color: '#fff'
+    }
+  },
+  tooltip : {
+    show: true,
+    trigger: 'item',
+    formatter: function (v) {
+               if(v[2].tooltipValue!=null){
+               return v[2].tooltipValue;
+               }else{
+               return v[1];
+               }
+  }},
+  toolbox: {
+    show : true,
+    orient : 'vertical',
+    x: 'right',
+    y: 'center',
+    feature : {
+      mark : {show: true},
+      dataView : {show: true, readOnly: false},
+      restore : {show: true},
+      saveAsImage : {show: true}
+    }
+  },
+  series : [
+    {
+      type:'map',
+      mapType: 'none',
+      data:[]
+      
+      ,markPoint : {
+        symbol:'emptyCircle',
+      symbolSize :25,
+      effect : {
+        show: false,
+        type: 'scale',
+        shadowBlur : 0
+      },
+      itemStyle:{
+      normal:{
+        label:{show:false},
+        color:function(param){
+    return(param.data.value.colorValue);
+  }
+      },
+      emphasis: {
+        label:{show:false}
+      }
+      },
+      data : [{name:'上海',value:{colorValue:'#ff3333',tooltipValue:'上海<br/>__________<br/>明天天气<br/>阴<br/>18℃-23℃<br/>__________<br/>后天天气<br/>多云<br/>20℃-25℃'},symbol:'image://pic/cloudy.png'},
+{name:'广州',value:{colorValue:'#ff3333',tooltipValue:'广州<br/>__________<br/>明天天气<br/>多云<br/>22℃-30℃<br/>__________<br/>后天天气<br/>多云<br/>22℃-29℃'},symbol:'image://pic/cloudy.png'},
+{name:'大连',value:{colorValue:'orange',tooltipValue:'大连<br/>__________<br/>明天天气<br/>晴<br/>10℃-14℃<br/>__________<br/>后天天气<br/>小雨<br/>11℃-14℃'},symbol:'image://pic/sunny.png'},
+{name:'南宁',value:{colorValue:'aqua',tooltipValue:'南宁<br/>__________<br/>明天天气<br/>多云<br/>22℃-31℃<br/>__________<br/>后天天气<br/>多云<br/>22℃-30℃'},symbol:'image://pic/cloudy.png'},
+{name:'南昌',value:{colorValue:'yellow',tooltipValue:'南昌<br/>__________<br/>明天天气<br/>晴<br/>20℃-29℃<br/>__________<br/>后天天气<br/>阵雨<br/>17℃-29℃'},symbol:'image://pic/sunny.png'},
+{name:'拉萨',value:{colorValue:'yellow',tooltipValue:'拉萨<br/>__________<br/>明天天气<br/>晴<br/>3℃-17℃<br/>__________<br/>后天天气<br/>多云<br/>2℃-18℃'},symbol:'image://pic/sunny.png'},
+{name:'长春',value:{colorValue:'yellow',tooltipValue:'长春<br/>__________<br/>明天天气<br/>晴<br/>1℃-9℃<br/>__________<br/>后天天气<br/>小雨<br/>0℃-12℃'},symbol:'image://pic/sunny.png'},
+{name:'包头',value:{colorValue:'yellow',tooltipValue:'包头<br/>__________<br/>明天天气<br/>小雨<br/>2℃-11℃<br/>__________<br/>后天天气<br/>晴<br/>-3℃-7℃'},symbol:'image://pic/rainy.png'},
+{name:'重庆',value:{colorValue:'aqua',tooltipValue:'重庆<br/>__________<br/>明天天气<br/>阴<br/>19℃-25℃<br/>__________<br/>后天天气<br/>小雨<br/>17℃-20℃'},symbol:'image://pic/cloudy.png'},
+{name:'武汉',value:{colorValue:'lime',tooltipValue:'武汉<br/>__________<br/>明天天气<br/>晴<br/>19℃-26℃<br/>__________<br/>后天天气<br/>小雨<br/>12℃-23℃'},symbol:'image://pic/sunny.png'},
+{name:'北京',value:{colorValue:'orange',tooltipValue:'北京<br/>__________<br/>明天天气<br/>多云<br/>9℃-15℃<br/>__________<br/>后天天气<br/>小雨<br/>6℃-12℃'},symbol:'image://pic/cloudy.png'},
+{name:'洛阳',value:{colorValue:'orange',tooltipValue:'洛阳<br/>__________<br/>明天天气<br/>中雨<br/>10℃-14℃<br/>__________<br/>后天天气<br/>小雨<br/>8℃-16℃'},symbol:'image://pic/rainy.png'},
+{name:'台北',value:{colorValue:'orange',tooltipValue:'台北<br/>__________<br/>明天天气<br/>小雨<br/>21℃-26℃<br/>__________<br/>后天天气<br/>多云<br/>21℃-27℃'},symbol:'image://pic/rainy.png'},
+{name:'乌鲁木齐',value:{colorValue:'lime',tooltipValue:'乌鲁木齐<br/>__________<br/>明天天气<br/>晴<br/>-4℃-6℃<br/>__________<br/>后天天气<br/>晴<br/>0℃-8℃'},symbol:'image://pic/sunny.png'},
+{name:'沈阳',value:{colorValue:'orange',tooltipValue:'沈阳<br/>__________<br/>明天天气<br/>晴<br/>1℃-13℃<br/>__________<br/>后天天气<br/>小雨<br/>1℃-14℃'},symbol:'image://pic/sunny.png'},
+{name:'西安',value:{colorValue:'orange',tooltipValue:'西安<br/>__________<br/>明天天气<br/>中雨<br/>12℃-16℃<br/>__________<br/>后天天气<br/>多云<br/>8℃-15℃'},symbol:'image://pic/rainy.png'},
+{name:'成都',value:{colorValue:'orange',tooltipValue:'成都<br/>__________<br/>明天天气<br/>多云<br/>19℃-25℃<br/>__________<br/>后天天气<br/>小雨<br/>14℃-21℃'},symbol:'image://pic/cloudy.png'},
+{name:'合肥',value:{colorValue:'orange',tooltipValue:'合肥<br/>__________<br/>明天天气<br/>多云<br/>16℃-23℃<br/>__________<br/>后天天气<br/>小雨<br/>13℃-24℃'},symbol:'image://pic/cloudy.png'},
+{name:'长沙',value:{colorValue:'yellow',tooltipValue:'长沙<br/>__________<br/>明天天气<br/>晴<br/>20℃-29℃<br/>__________<br/>后天天气<br/>小雨<br/>16℃-27℃'},symbol:'image://pic/sunny.png'},
+{name:'济南',value:{colorValue:'lime',tooltipValue:'济南<br/>__________<br/>明天天气<br/>多云<br/>11℃-17℃<br/>__________<br/>后天天气<br/>小雨<br/>7℃-15℃'},symbol:'image://pic/cloudy.png'},
+{name:'福州',value:{colorValue:'lime',tooltipValue:'福州<br/>__________<br/>明天天气<br/>多云<br/>19℃-26℃<br/>__________<br/>后天天气<br/>多云<br/>19℃-26℃'},symbol:'image://pic/cloudy.png'},
+{name:'兰州',value:{colorValue:'lime',tooltipValue:'兰州<br/>__________<br/>明天天气<br/>多云<br/>3℃-17℃<br/>__________<br/>后天天气<br/>多云<br/>0℃-9℃'},symbol:'image://pic/cloudy.png'}
+      ]},
+      geoCoord:{'上海': [121.48024,31.23631],
+'广州': [113.27079,23.13531],
+'大连': [121.62139,38.91934],
+'南宁': [108.37335,22.82304],
+'南昌': [115.86453,28.68767],
+'拉萨': [ 91.12103,29.65009],
+'长春': [125.33017,43.82178],
+'包头': [109.84676,40.66364],
+'重庆': [106.55716,29.57100],
+'武汉': [114.31183,30.59843],
+'北京': [116.41355,39.91101],
+'洛阳': [112.46003,34.62438],
+'台北': [121.52487,25.04218],
+'乌鲁木齐': [ 87.62331,43.83281],
+'沈阳': [123.43897,41.81134],
+'西安': [108.94631,34.34744],
+'成都': [104.07122,30.57628],
+'合肥': [117.23545,31.82687],
+'长沙': [112.94533,28.23397],
+'济南': [117.00132,36.67163],
+'福州': [119.30294,26.08045],
+'兰州': [103.84069,36.06731]
+                  }
+                  
+
+    },
+    ]
+};
+
+
+var myChart = BMapExt.initECharts(container);
+window.onresize = myChart.onresize;
+BMapExt.setOption(option);
+                }
+                );
+                })();
+</script>
+  </body>
+  </html>
+
+  
