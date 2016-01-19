@@ -106,7 +106,7 @@ markLineStr = function(markLineData,
   if(tooltipExist){
     tooltipValue = sprintf("'%s'",
           as.character(
-           markPointData[,which('tooltip' == dataName)])
+           markLineData[,which('tooltip' == dataName)])
                            )
   }else{
     tooltipValue = NULL
