@@ -80,7 +80,7 @@ local.plot = function(object,file_name){
                   "./js/jquery.min.js",
                   content)
 
-    content = sub("http://echarts.baidu.com/extension/BMap/src",
+    content = sub("http://lchiffon.github.io/reveal_slidify/echarts/require",
                   "./js",
                   content)
   }

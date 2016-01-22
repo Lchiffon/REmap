@@ -343,7 +343,7 @@ html.data.B = list(head = "<html>
                 packages: [
                 {
                 name: 'BMap',
-                location: 'http://echarts.baidu.com/extension/BMap/src',
+                location: 'http://lchiffon.github.io/reveal_slidify/echarts/require',
                 main: 'main'
                 }
                 ]
