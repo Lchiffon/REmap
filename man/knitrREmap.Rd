@@ -4,7 +4,7 @@
 \alias{knitrREmap}
 \title{Plot REmap in knitr}
 \usage{
-knitrREmap(object, height = "300px", width = "100\%")
+knitrREmap(object, height = "300px", width = "100\%", local = F)
 }
 \arguments{
 \item{height}{height for the DOM of REmap}

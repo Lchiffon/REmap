@@ -22,6 +22,14 @@ install_github('lchiffon/REmap')
 ----
 ### 更新日志
 
+#### V0.3.2
+- remapB函数添加11个新主题
+
+![](http://lchiffon.github.io/reveal_slidify/echarts/all.png)
+
+- 修复Bug
+
+
 #### V0.3.1
 - 新生成的图片将存储在R的临时文件夹中,并在退出R后删除
 - 可以使用`options(remap.js.web = T)`来切换保存到工作目录的模式
@@ -58,6 +66,9 @@ install_github('lchiffon/REmap')
 
 ----
 ### Update Log
+#### V0.3.2
+- Add 11 new themes into remapB function
+- Fix bugs
 
 
 #### V0.3.1

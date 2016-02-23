@@ -22,7 +22,9 @@ you can get from get_city_coord, e.g.get_city_coord("beijing")}
 \item{zoom}{the size of the Bmap, zoom:5 country data,
 zoom:15 city data}
 
-\item{color}{"Bright" or "Blue"}
+\item{color}{"Bright", "Blue", "light", "dark", "redalert",
+"googlelite", "grassgreen", "midnight", "pink", "darkgreen",
+"bluish", "grayscale", "hardedge"}
 
 \item{title}{a character string of the title}
 
@@ -52,10 +54,19 @@ geoData  = get_geo_position(unique(demoC[demoC==demoC]))
 
 remapB(markLineData = demoC,geoData = geoData)
 
-
-
+# Different themes
 remapB(markLineData = demoC,color = "Blue",geoData = geoData)
-
+remapB(markLineData = demoC,color = "light",geoData = geoData)
+remapB(markLineData = demoC,color = "dark",geoData = geoData)
+remapB(markLineData = demoC,color = "redalert",geoData = geoData)
+remapB(markLineData = demoC,color = "googlelite",geoData = geoData)
+remapB(markLineData = demoC,color = "grassgreen",geoData = geoData)
+remapB(markLineData = demoC,color = "midnight",geoData = geoData)
+remapB(markLineData = demoC,color = "pink",geoData = geoData)
+remapB(markLineData = demoC,color = "darkgreen",geoData = geoData)
+remapB(markLineData = demoC,color = "bluish",geoData = geoData)
+remapB(markLineData = demoC,color = "grayscale",geoData = geoData)
+remapB(markLineData = demoC,color = "hardedge",geoData = geoData)
 
 remapB(markLineData = demoC,markPointData = demoC[,2],
        color = "Blue",geoData = geoData)
