@@ -34,10 +34,10 @@ eMap = function(dat, namevar=NULL, datavar=2:ncol(dat), size = NULL, region="chi
 	}
 	print(datavar)
 	if (missing(namevar)| is.null(namevar)){
-		insertColumn <- rownames(dat)
-		dat <- cbind(insertColumn, dat)
-		colnames(dat)[1] <- "region"
-		namevar = "region"
+# 		insertColumn <- rownames(dat)
+# 		dat <- cbind(insertColumn, dat)
+# 		colnames(dat)[1] <- "region"
+		namevar = colnames(dat)[1]
 	}
 
 	if(length(namevar) > 1) namevar=namevar[1]
