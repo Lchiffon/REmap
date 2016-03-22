@@ -309,8 +309,14 @@ remapB = function(center = c(104.114129,37.550339),
   output@option = sub("//markPointData",
                       markPointData,output@option)
 
+  ## optionNameData
+  output@option = sub("optionNameData",
+                      paste0("option", output@id),output@option)
+  outputFoot = sub("optionNameData",
+                    paste0("option", output@id),foot)
+
   output@option = strsplit(output@option,"kkkmmm")[[1]][2]
-  output@content =  paste(head,output@option,foot,sep = "\n")
+  output@content =  paste(head,output@option,outputFoot,sep = "\n")
 
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",locate)
@@ -384,7 +390,7 @@ html.data.B = list(head = "<html>
                 //mapStyleData
 
 
-option = {
+optionNameData = {
   color: ['gold','aqua','lime'],
   title : {
     text: 'titleData',
@@ -431,7 +437,7 @@ option = {
 foot = "
 var myChart = BMapExt.initECharts(container);
 window.onresize = myChart.onresize;
-BMapExt.setOption(option);
+BMapExt.setOption(optionNameData);
                 }
                 );
                 })();

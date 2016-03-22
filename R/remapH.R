@@ -237,8 +237,14 @@ remapH = function(data,
   output@option = sub("//heatMapStrData",
                       heatMapStrData,output@option)
 
+  ## optionNameData
+  output@option= sub("optionNameData",
+                  paste0("option", output@id),output@option)
+  outputFoot = sub("optionNameData",
+                   paste0("option", output@id),foot)
+
   output@option = strsplit(output@option,"kkkmmm")[[1]][2]
-  output@content =  paste(head,output@option,foot,sep = "\n")
+  output@content =  paste(head,output@option,outputFoot,sep = "\n")
 
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",locate)
@@ -275,7 +281,7 @@ html.data.H = list(
   " ,
   option = "forChangekkkmmm
   var heatData = [heatMapData];
-  var options = 
+  var optionNameData =
   {
 
   backgroundColor: 'backgroundColorData',
@@ -349,7 +355,7 @@ html.data.H = list(
   }]
   }",
   foot = ";
-  myChart.setOption(options);
+  myChart.setOption(optionNameData);
   </script>
   </body>
   </html>"

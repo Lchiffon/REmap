@@ -1,16 +1,16 @@
 ##' Create an remap object
-##'  
+##'
 ##' remap use a data frame create a remap object
 ##' which can be used by plot to see the map by browser
-##' 
+##'
 ##' mapdata should be a dataframe which including two columns,
 ##' the first column is depart, second column is destination.
-##' 
-##' @param mapdata   a data frame including depart and destination 
+##'
+##' @param mapdata   a data frame including depart and destination
 ##' in each column
 ##' @param title    a character string of the title
 ##' @param subtitle    a character string of the subtitle
-##' @param theme    a list object created by get_theme,control 
+##' @param theme    a list object created by get_theme,control
 ##' the color of the map.
 ##' @return An remap object
 ##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
@@ -30,39 +30,39 @@ remap = function(mapdata,
     Sys.setlocale("LC_CTYPE",
                   "English_United Kingdom.1252")
   }
-  
+
   ### Test and create label:
   if(!is.data.frame(mapdata)){
     stop("Map data should be a data frame.")
   }
-  
-  mapdata = na.omit(mapdata) 
-  
+
+  mapdata = na.omit(mapdata)
+
   if(ncol(mapdata)<2 | nrow(mapdata) == 0 ){
     stop("Mapdata should have at least 2 columns and 1 row")
   }
-  
+
   if(ncol(mapdata) == 2){
     label = apply(mapdata,1,function(x) paste(x[1],x[2],sep  = " -- "))
   }else{
     label = mapdata[,3]
   }
-  
+
   ### Get geo position
   if(!is.character(mapdata[1,1])){
   mapdata[,1] = as.character(mapdata[,1])
   mapdata[,2] = as.character(mapdata[,2])
   }
   city_vec = unique(c(mapdata[,1],mapdata[,2]))
-  
+
   Geo_data = get_geo_position(city_vec)
-  
-  
-  
+
+
+
   ###geoCoord_data
   mapdata$value = sample(seq(0,100,10),nrow(mapdata),replace = T)
-  
-  city_data_vec = apply(Geo_data,1,function(x) 
+
+  city_data_vec = apply(Geo_data,1,function(x)
     paste0("'",
            x[3],
            "'",
@@ -72,40 +72,40 @@ remap = function(mapdata,
            x[2],
            ']'))
   geoCoord_data = paste(city_data_vec,collapse = ",\n")
-  
+
   ###markLineData
   markLine = apply(mapdata,1,function(x)
     paste0("[{name:'",x[1],"'}, {name:'",x[2],
            "',value:",x[3],"}]" ))
   markLineData = paste(markLine,collapse = ",\n")
-  
+
   ### markPointData
 
-  markpoint = apply(mapdata,1,function(x) 
+  markpoint = apply(mapdata,1,function(x)
     paste0("{name:'",x[2],"',value:",x[3],"}"))
   markPointData= paste(markpoint,collapse = ",\n")
 
-  
-  
-  
+
+
+
   ### write remap object
   output = new("remap")
   output@id = paste('ID', format(Sys.time(), "%Y%m%d%H%M%S"), proc.time()[3]*100, sep="_")
   output@theme = theme
   output@maptype = "SVG"
-  
+
   output@option = html.data$option
   head = html.data$head
   foot = html.data$foot
-  
+
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",
                   "chs")
   }
-  
+
   output@option = sub("forChange",
                       "一",output@option)
-  
+
   output@option = sub("backgroundColorData",
                        theme$backgroundColor,output@option)
   output@option = sub("titleData",title,output@option)
@@ -117,10 +117,17 @@ remap = function(mapdata,
   output@option = sub("geoCoord_data",geoCoord_data,output@option)
   output@option = sub("markLineData",markLineData,output@option)
   output@option = sub("markPointData",markPointData,output@option)
-  
+
+  ## optionNameData
+  outputHead= sub("optionNameData",
+                  paste0("option", output@id),head)
+  outputFoot = sub("optionNameData",
+                   paste0("option", output@id),foot)
+
+
   output@option = strsplit(output@option,"kkkmmm")[[1]][2]
-  output@content =  paste(head,output@option,foot,sep = "\n") 
-    
+  output@content =  paste(outputHead,output@option,outputFoot,sep = "\n")
+
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",locate)
   }
@@ -148,17 +155,17 @@ html.data = list(
   <script src = \"http://echarts.baidu.com/build/dist/echarts-all.js\"></script>
   <script>
   var myChart = echarts.init(document.getElementById(\"main\"));
-  
-  var options = " ,
+
+  var optionNameData = " ,
   option = "forChangekkkmmm{
-  backgroundColor: 'backgroundColorData', 
+  backgroundColor: 'backgroundColorData',
   color: ['gold','aqua','lime'],
   title : {
-  text: 'titleData', 
-  subtext:'subtitleData', 
+  text: 'titleData',
+  subtext:'subtitleData',
   x:'center',
   textStyle : {
-  color: 'titleColorData'  
+  color: 'titleColorData'
   }
   },
   tooltip : {
@@ -185,22 +192,22 @@ html.data = list(
   calculable : true,
   color: lineColorData
   },
-  
+
   series : [
   {
   type:'map',
   itemStyle:{
   normal:{
-  borderColor:'borderColorData', 
+  borderColor:'borderColorData',
   borderWidth: 0.5,
   areaStyle:{
-  color: 'regionColorData'  
+  color: 'regionColorData'
   }
   }
   },
   data:[],
   geoCoord: {geoCoord_data},
-  
+
   markLine : {
   smooth:true,
   effect : {
@@ -221,7 +228,7 @@ html.data = list(
   label:{show:false}
   }
   },
-  
+
   data : [
   markLineData
   ]
@@ -242,13 +249,13 @@ html.data = list(
   },
   data : [
   markPointData
-  ]	
+  ]
   }
   }
   ]
   }",
   foot = ";
-  myChart.setOption(options);	
+  myChart.setOption(optionNameData);
   </script>
   </body>
   </html>"

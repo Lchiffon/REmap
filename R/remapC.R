@@ -230,9 +230,14 @@ remapC = function(data,
                       markLineData,output@option)
   output@option = sub("//markPointData",
                       markPointData,output@option)
+  ## optionNameData
+  outputHead= sub("optionNameData",
+                      paste0("option", output@id),head)
+  outputFoot = sub("optionNameData",
+                   paste0("option", output@id),foot)
 
   output@option = strsplit(output@option,"kkkmmm")[[1]][2]
-  output@content =  paste(head,output@option,foot,sep = "\n")
+  output@content =  paste(outputHead,output@option,outputFoot,sep = "\n")
 
   if(.Platform$OS.type == "windows"){
     Sys.setlocale("LC_CTYPE",locate)
@@ -266,7 +271,7 @@ html.data.C = list(
   <script>
   var myChart = echarts.init(document.getElementById(\"main\"));
 
-  var options = " ,
+  var optionNameData = " ,
   option = "forChangekkkmmm{
   backgroundColor: 'backgroundColorData',
   color: ['pointColorData','aqua','lime'],
@@ -337,7 +342,7 @@ html.data.C = list(
   }]
 }",
   foot = ";
-  myChart.setOption(options);
+  myChart.setOption(optionNameData);
   </script>
   </body>
   </html>"
