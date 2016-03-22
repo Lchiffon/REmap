@@ -57,12 +57,14 @@ knitrREmap = function(object,
 
 
   }else if(object@maptype == "SVG"){
+    head = sub("optionNameData",
+               paste0("option", object@id), html.knitr.list$SVG.head)
 
     foot = sub("optionNameData",
                paste0("option", object@id), html.knitr.list$SVG.foot)
 
     ## write SVG content
-    content = paste0(html.knitr.list$SVG.head,
+    content = paste0(head,
                      object@option,
                      foot)
 
@@ -136,17 +138,17 @@ html.knitr.list = list(Bmap.head = "",
                        Bmap.foot = "
 var myChart = BMapExt.initECharts(container);
                        window.onresize = myChart.onresize;
-                       BMapExt.setOption(option);
+                       BMapExt.setOption(optionNameData);
                        }
 );
                        })();",
                        SVG.head = "  var myChart = echarts.init(document.getElementById(\"main\"));
 
-                       var options = ",
+                       var optionNameData = ",
                        SVG.foot = ";
-  myChart.setOption(options);	",
+  myChart.setOption(optionNameData);	",
                        SVGH.head =
     "  var myChart = echarts.init(document.getElementById(\"main\"));",
                        SVGH.foot = ";
-  myChart.setOption(options);	"
+  myChart.setOption(optionNameData);	"
 )

@@ -77,12 +77,14 @@ intoHtmlObject = function(object,
 
 
   }else if(object@maptype == "SVG"){
+    head = sub("optionNameData",
+               paste0("option", object@id), html.knitr.list$SVG.head)
 
     foot = sub("optionNameData",
                paste0("option", object@id), html.knitr.list$SVG.foot)
 
     ## write SVG content
-    content = paste0(html.knitr.list$SVG.head,
+    content = paste0(head,
                      object@option,
                      foot)
 
