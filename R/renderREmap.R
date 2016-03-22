@@ -63,11 +63,12 @@ intoHtmlObject = function(object,
 
   if(object@maptype == "Bmap"){
 
-
+    foot = sub("optionNameData",
+               paste0("option", object@id), html.knitr.list$Bmap.foot)
     ##write Bmap content
     content = paste0(html.knitr.list$Bmap.head,
                      object@option,
-                     html.knitr.list$Bmap.foot)
+                     foot)
 
 
     content = sub("#main",
@@ -77,11 +78,13 @@ intoHtmlObject = function(object,
 
   }else if(object@maptype == "SVG"){
 
+    foot = sub("optionNameData",
+               paste0("option", object@id), html.knitr.list$SVG.foot)
 
     ## write SVG content
     content = paste0(html.knitr.list$SVG.head,
                      object@option,
-                     html.knitr.list$SVG.foot)
+                     foot)
 
     content = sub("main",
                   object@id
@@ -89,18 +92,19 @@ intoHtmlObject = function(object,
 
   }else if(object@maptype == "SVGH"){
 
+    foot = sub("optionNameData",
+               paste0("option", object@id), html.knitr.list$SVGH.foot)
 
     ## write SVG content
     content = paste0(html.knitr.list$SVGH.head,
                      object@option,
-                     html.knitr.list$SVGH.foot)
+                     foot)
 
     content = sub("main",
                   object@id
                   ,content)
 
   }
-
 
 
 
