@@ -5,7 +5,8 @@
 ##'
 ##' @usage
 ##' REmapOutput(outputId, inline = FALSE, container,...)
-##' renderREmap(expr, env = parent.frame(), quoted = FALSE, func = NULL)
+##' renderREmap(expr, env = parent.frame(),height = "800px",
+##'            width = "100%", quoted = FALSE, func = NULL)
 ##'
 ##' @details
 ##' USe renderREmap render an REmap object and use REmapOutput
@@ -14,7 +15,7 @@
 ##' @examples
 ##' library(REmap)
 ##' library(shiny)
-##' runApp("")
+##' runApp(system.file("shiny","shinyBmap", package = "REmap"))
 REmapOutput =function (outputId, inline = FALSE, container = if (inline) span else div,
                        ...)
 {
@@ -22,7 +23,9 @@ REmapOutput =function (outputId, inline = FALSE, container = if (inline) span el
   container(id = outputId, class = "shiny-html-output", ...))
 }
 
-renderREmap = function (expr, env = parent.frame(), quoted = FALSE, func = NULL)
+renderREmap = function (expr, env = parent.frame(), quoted = FALSE, func = NULL,
+                        height = "800px",
+                        width = "100%")
 {
   if (!is.null(func)) {
     shinyDeprecated(msg = "renderUI: argument 'func' is deprecated. Please use 'expr' instead.")
@@ -36,7 +39,7 @@ renderREmap = function (expr, env = parent.frame(), quoted = FALSE, func = NULL)
     if (is.null(result) || length(result) == 0)
       return(NULL)
 
-    output = intoHtmlObject(result)
+    output = intoHtmlObject(result, height = height, width = width)
     output <- htmltools::takeSingletons(output, shinysession$singletons,
                              desingleton = FALSE)$ui
     output <- htmltools::surroundSingletons(output)
@@ -50,7 +53,7 @@ renderREmap = function (expr, env = parent.frame(), quoted = FALSE, func = NULL)
 }
 
 intoHtmlObject = function(object,
-                          height = "500px",
+                          height = "1200px",
                           width = "100%"){
 
 
