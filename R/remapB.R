@@ -262,7 +262,7 @@ remapB = function(center = c(104.114129,37.550339),
 
   output = new("remap")
   output@id = paste('ID', format(Sys.time(), "%Y%m%d%H%M%S"),
-                    proc.time()[3]*100, sep="_")
+                    round(proc.time()[3]*100), sep="_")
   output@theme = get_theme()
   output@maptype = "Bmap"
 

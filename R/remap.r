@@ -90,7 +90,7 @@ remap = function(mapdata,
 
   ### write remap object
   output = new("remap")
-  output@id = paste('ID', format(Sys.time(), "%Y%m%d%H%M%S"), proc.time()[3]*100, sep="_")
+  output@id = paste('ID', format(Sys.time(), "%Y%m%d%H%M%S"), round(proc.time()[3]*100), sep="_")
   output@theme = theme
   output@maptype = "SVG"
 

@@ -183,7 +183,7 @@ remapH = function(data,
   ### write remap object
   output = new("remap")
   output@id = paste('ID', format(Sys.time(), "%Y%m%d%H%M%S"),
-                    proc.time()[3]*100, sep="_")
+                    round(proc.time()[3]*100), sep="_")
   output@theme = theme
   output@maptype = "SVGH"
 
