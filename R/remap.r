@@ -13,7 +13,7 @@
 ##' @param theme    a list object created by get_theme,control
 ##' the color of the map.
 ##' @return An remap object
-##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
+##' @author Chiffon <\url{http://lchiffon.github.io}>
 ##' @examples
 ##' set.seed(125)
 ##' out = remap(demoC,title = "REmap",subtitle = "theme:Dark")

@@ -35,6 +35,6 @@ plot(out)
 summary(out)
 }
 \author{
-Chiffon <\url{http://chiffon.gitcafe.io}>
+Chiffon <\url{http://lchiffon.github.io}>
 }
 

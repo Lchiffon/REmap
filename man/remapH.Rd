@@ -56,6 +56,6 @@ heatmap = sampleData()
 remapH(heatmap,minAlpha = 0.1,title = "Heat Map from REmap")
 }
 \author{
-Chiffon <\url{http://chiffon.gitcafe.io}>
+Chiffon <\url{http://lchiffon.github.io}>
 }
 

@@ -32,7 +32,7 @@
 ##' @param geoData geoData for markLine and markPoint format is
 ##' similar as get_geo_position()
 ##' @return An remap object
-##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
+##' @author Chiffon <\url{http://lchiffon.github.io}>
 ##' @examples
 ##'
 ##'  geoData  = get_geo_position(unique(demoC[demoC==demoC]))

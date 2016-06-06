@@ -87,6 +87,6 @@ out = remap(demoC,title = "REmap<U+7EC0><U+8F70><U+7DE5><U+93C1><U+7248><U+5D41>
 plot(out)
 }
 \author{
-Chiffon <\url{http://chiffon.gitcafe.io}>
+Chiffon <\url{http://lchiffon.github.io}>
 }
 

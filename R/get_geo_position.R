@@ -15,7 +15,7 @@
 ##' @param cache_data  c('city','airport','none') city for city geo_position,
 ##' airport for the geo_position in that city, none for nothing for cache
 ##' @return A dataframe of longtitude and latitude and city name
-##' @author Dawei.Lang Chiffon <\url{http://chiffon.gitcafe.io}>
+##' @author Dawei.Lang Chiffon <\url{http://lchiffon.github.io}>
 ##' @examples
 ##' city_vec1 = c("Beijing","Shanghai","Guangzhou")
 ##' get_geo_position (city_vec1)

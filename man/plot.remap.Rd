@@ -25,6 +25,6 @@ subtitle = "theme:Dark")
 plot(out)
 }
 \author{
-Chiffon <\url{http://chiffon.gitcafe.io}>
+Chiffon <\url{http://lchiffon.github.io}>
 }
 

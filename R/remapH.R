@@ -34,7 +34,7 @@
 ##' @param opacity  Opacity of the heatmap. Default is 1
 ##' @param ...  other paramters like title, subtitle,data for mark line
 ##' @return An remap object of heat map
-##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
+##' @author Chiffon <\url{http://lchiffon.github.io}>
 ##' @examples
 ##' heatmap = sampleData()
 ##' ## This is a function to create sample data as
