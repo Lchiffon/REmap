@@ -2,7 +2,7 @@
 ### Create html maps by Echarts
 
 - Version: 0.3
-- Authors@R: "Dawei Lang <dawei.lang@supstat.com> [aut, cre]"
+- Authors@R: "Dawei Lang <chiffonlang@icloud.com> [aut, cre]"
 - Description: Provides an R interface to the JavaScript library ECharts for
     interactive map data visualization.
 - Depends: R (>= 3.1.2)
