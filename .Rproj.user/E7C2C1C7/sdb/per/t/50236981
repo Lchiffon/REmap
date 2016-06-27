@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "##' Get the location information of the city vector\n##'\n##' get_geo_position use the function of get_city_coord according\n##' to Baidu API <\\url{http://developer.baidu.com/map/}>to get the longtitude and latitude of the city\n##' vector\n##'\n##' This function can transform the name of Chinese city ve tor\n##' Which can be a Chinese string or an English name,like Shanghai.\n##' This function is used BaiduAPI to get the geo information.\\\\\n##' It's recomendece to use Chinese city name because of the API\n##' we use is Baidu, which will performs better in Chiese\\\\\n##' Please make sure your bowser can open developer.baidu.com/map/ to get the data.\n##'\n##' @param city_vec   a character object of the name of Chinese city,\n##' @param cache_data  c('city','airport','none') city for city geo_position,\n##' airport for the geo_position in that city, none for nothing for cache\n##' @return A dataframe of longtitude and latitude and city name\n##' @author Dawei.Lang Chiffon <\\url{http://chiffon.gitcafe.io}>\n##' @examples\n##' city_vec1 = c(\"Beijing\",\"Shanghai\",\"Guangzhou\")\n##' get_geo_position (city_vec1)\n\n\n\n\nget_geo_position = function(city_vec,cache_data = 'city',...){\n  #city data load(\"data/city.Rdata\")\n\n  if(cache_data == 'city'){\n    cache = REmapCityGeo\n  }else if(cache_data == 'airport'){\n    cache = airport\n  }else if(cache_data == 'none'){\n    cache = data.frame(city = 'nooooo')\n  }else{\n    warning(\"There's no cache data called\",cache_data,\",use city instead\")\n  }\n\n  lab_list = sapply(city_vec, function(x) which(x == cache$city))\n\n  index = sapply(lab_list,function(x) length(x)==0)\n\n  in_list = lab_list[!index]\n\n  if(length(in_list)!=length(city_vec)){\n\n    in_list = do.call(c,in_list)\n    out_list = names(lab_list)[index]\n\n    OutputData = data.frame(lon = 0,\n                             lat = 0)\n\n    for ( i in 1:length(out_list)){\n      OutputData[i,] = get_city_coord(out_list[i],...)\n    }\n    OutputData$city = out_list\n\n    OutputData  = rbind(OutputData,cache[in_list,])\n  }else{\n    OutputData = cache[in_list,]\n  }\n\n  naData = OutputData[!complete.cases(OutputData),]\n  if(nrow(naData)!=0){\n    warning(paste(paste(naData$city),\"not found.\"))\n    OutputData = na.omit(OutputData)\n  }\n\n\n  OutputData\n}\n",
+    "created" : 1464233579394.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2714269779",
+    "id" : "50236981",
+    "lastKnownWriteTime" : 1464233544,
+    "last_content_update" : 1464233544,
+    "path" : "D:/git/REmap/R/get_geo_position.R",
+    "project_path" : "R/get_geo_position.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
