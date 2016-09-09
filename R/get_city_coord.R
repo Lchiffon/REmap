@@ -16,6 +16,7 @@
 
 get_city_coord = function(city){
   ## Get geodata by Baidu API
+  city = paste0(c("",charToRaw(city)),collapse="%")
   url = paste0("http://api.map.baidu.com/place/v2/search?q=",city,
                "&region=",city,
                "&output=json&ak=q9U1lWgCK1aBGVC1DVWrgWa7")
