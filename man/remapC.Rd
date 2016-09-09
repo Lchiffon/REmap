@@ -73,6 +73,6 @@ remapC(chinaIphone,
         markPointData = demoC[,2])
 }
 \author{
-Chiffon <\url{http://chiffon.gitcafe.io}>
+Chiffon <\url{http://lchiffon.github.io}>
 }
 

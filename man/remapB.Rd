@@ -72,6 +72,6 @@ remapB(markLineData = demoC,markPointData = demoC[,2],
        color = "Blue",geoData = geoData)
 }
 \author{
-Chiffon <\url{http://chiffon.gitcafe.io}>
+Chiffon <\url{http://lchiffon.github.io}>
 }
 

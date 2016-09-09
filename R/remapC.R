@@ -41,7 +41,7 @@
 ##' @param mindata  mindata for legend
 ##' @param maxdata  maxdata for legend
 ##' @return An remap object
-##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
+##' @author Chiffon <\url{http://lchiffon.github.io}>
 ##' @examples
 ##' data = data.frame(country = mapNames("world"),
 ##'                    value = 5*sample(178)+200)

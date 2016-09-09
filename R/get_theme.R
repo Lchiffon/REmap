@@ -25,7 +25,7 @@
 ##' @param pointColor  color of the center point of each element, 
 ##' only support mapC.
 ##' @return A list of color control, which can be used by remap
-##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
+##' @author Chiffon <\url{http://lchiffon.github.io}>
 ##' @examples
 ##' ## default theme:"Dark"
 ##' set.seed(125)

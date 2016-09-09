@@ -33,6 +33,6 @@ city_vec1 = c("Beijing","Shanghai","Guangzhou")
 get_geo_position (city_vec1)
 }
 \author{
-Dawei.Lang Chiffon <\url{http://chiffon.gitcafe.io}>
+Dawei.Lang Chiffon <\url{http://lchiffon.github.io}>
 }
 

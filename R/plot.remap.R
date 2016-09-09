@@ -7,7 +7,7 @@
 ##' @param object an remap object
 ##' @param path  the path for saving REmap object
 ##' @return Create a html file according to the id of the object
-##' @author Chiffon <\url{http://chiffon.gitcafe.io}>
+##' @author Chiffon <\url{http://lchiffon.github.io}>
 ##' @examples
 ##' set.seed(125)
 ##' out = remap(demoC,title = "REmap: Demo DATA",

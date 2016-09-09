@@ -25,6 +25,6 @@ This function is used BaiduAPI to get the geo information.
 get_city_coord("Shanghai")
 }
 \author{
-Chiffon <\url{http://chiffon.gitcafe.io}>
+Chiffon <\url{http://lchiffon.github.io}>
 }
 
