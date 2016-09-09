@@ -20,9 +20,10 @@ get_city_coord = function(city){
   url = paste0("http://api.map.baidu.com/place/v2/search?q=",city,
                "&region=",city,
                "&output=json&ak=q9U1lWgCK1aBGVC1DVWrgWa7")
-  options(warn=-1)
-  doc = XML::htmlParse(readLines(url,encoding = 'UTf-8'))
-  options(warn=0)
+  doc = XML::htmlParse(url)
+#   options(warn=-1)
+#   doc = XML::htmlParse(readLines(url,encoding = 'UTf-8'))
+#   options(warn=0)
   rootNode <- XML::xmlRoot(doc)
   list = rjson::fromJSON(XML::xpathSApply(rootNode,"//p",
                                           XML::xmlValue))
