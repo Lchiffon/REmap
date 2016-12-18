@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "##' Get the location information of the city\n##'\n##' get_city_coord use Baidu API  <\\url{http://developer.baidu.com/map/}>\n##' to get the longtitude and latitude of the city\n##'\n##' This function can transform the name of Chinese city Which\n##' can be a Chinese string or an English name,like Shanghai.\n##' This function is used BaiduAPI to get the geo information.\n##'\n##' @param city   a character object of the name of Chinese city,\n##' @return a vecctor of longtitude and latitude\n##' @author Chiffon <\\url{http://chiffon.gitcafe.io}>\n##' @examples\n##' get_city_coord(\"Shanghai\")\n\n\nget_city_coord = function(city){\n  ## Get geodata by Baidu API\n  url = paste0(\"http://api.map.baidu.com/place/v2/search?q=\",city,\n               \"&region=\",city,\n               \"&output=json&ak=q9U1lWgCK1aBGVC1DVWrgWa7\")\n  options(warn=-1)\n  doc = XML::htmlParse(readLines(url,encoding = 'UTf-8'))\n  options(warn=0)\n  rootNode <- XML::xmlRoot(doc)\n  list = rjson::fromJSON(XML::xpathSApply(rootNode,\"//p\",\n                                          XML::xmlValue))\n\n  if(length(list$results) ==0){\n    return(c(NA,NA))\n  }\n  output = c(list$results[[1]]$location$lng,\n              list$results[[1]]$location$lat)\n\n  if(is.null(output)){\n    output = c(NA,NA)\n  }\n\n  return(output)\n}\n",
+    "created" : 1464233578516.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2317747967",
+    "id" : "9295A89E",
+    "lastKnownWriteTime" : 1464233872,
+    "last_content_update" : 1464233872656,
+    "path" : "D:/git/REmap/R/get_city_coord.R",
+    "project_path" : "R/get_city_coord.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
