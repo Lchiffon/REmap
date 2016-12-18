@@ -1,0 +1,18 @@
+{
+    "contents" : "devtools::load_all()\ncity=mapNames(\"guangdong\")\nvalue=c(1:21)\ndata=data.frame(city,value)\nremapC(data,maptype=\"guangdong\",color=c('skyblue'))\norigin=enc2utf8(rep(\"广州市\",2))\ndestination=enc2utf8(c(\"东莞市\",\"汕头市\"))\ndat=data.frame(origin,destination)\nremapC(data,maptype=\"guangdong\",color=c('skyblue'),markLineData=dat)\n",
+    "created" : 1446871039419.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3043450826",
+    "id" : "9AE5EBFB",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

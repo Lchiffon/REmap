@@ -1,0 +1,18 @@
+{
+    "contents" : "---\ntitle: \"Untitled\"\nauthor: \"Chiffon\"\ndate: \"22 March 2016\"\noutput: html_document\n---\n\nThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.\n\nWhen you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\n```{r}\nlibrary(REmap)\nremap.init()\nknitrREmap(remap(demoC))\n\ngeoData  = get_geo_position(unique(demoC[demoC==demoC]))\n# this may take some time,be patient~\n\nknitrREmap(remapB(markLineData = demoC,geoData = geoData))\n\n\n```\n\nYou can also embed plots, for example:\n\n```{r, echo=FALSE}\nplot(cars)\n```\n\nNote that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.\n",
+    "created" : 1458649440699.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3017625561",
+    "id" : "91E73A4A",
+    "lastKnownWriteTime" : 1458649855,
+    "path" : "C:/Users/Administrator/Desktop/123.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}
