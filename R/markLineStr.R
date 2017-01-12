@@ -128,7 +128,8 @@ markLineStr = function(markLineData,
          tooltipExist)){
     valuedata = getValue(valueDF)
   }else{
-    valuedata = sample(100,nrow(markLineData))
+    #valuedata = sample(100,nrow(markLineData))
+    valuedata = sample(100,nrow(markLineData),replace=T)
   }
 #   if(colorExist){
 #     colordata = markLineData[,which('color' == dataName)]
