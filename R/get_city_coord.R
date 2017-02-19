@@ -13,13 +13,15 @@
 ##' @examples
 ##' get_city_coord("Shanghai")
 
-
-get_city_coord = function(city){
+get_city_coord = function(city, ak = getOption("remap.ak")){
   ## Get geodata by Baidu API
+  if(ak == getOption("remap.ak")){
+    warning("Please use your own baidu API!\nSet it using: options(remap.ak = \"XXXXX\")\nhttp://lbsyun.baidu.com")
+  }
   city = paste0(c("",charToRaw(city)),collapse="%")
   url = paste0("http://api.map.baidu.com/place/v2/search?q=",city,
                "&region=",city,
-               "&output=json&ak=q9U1lWgCK1aBGVC1DVWrgWa7")
+               "&output=json&ak=", ak)
   doc = XML::htmlParse(url)
 #   options(warn=-1)
 #   doc = XML::htmlParse(readLines(url,encoding = 'UTf-8'))

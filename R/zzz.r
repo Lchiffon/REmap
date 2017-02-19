@@ -33,6 +33,7 @@
 
   options(remap.js.dir = "./js")
   options(remap.js.web = FALSE)
+  options(remap.ak = "q9U1lWgCK1aBGVC1DVWrgWa7")
 
 }
 
