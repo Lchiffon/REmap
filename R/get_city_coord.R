@@ -15,7 +15,7 @@
 
 get_city_coord = function(city, ak = getOption("remap.ak")){
   ## Get geodata by Baidu API
-  if(ak == getOption("remap.ak")){
+  if(ak == "q9U1lWgCK1aBGVC1DVWrgWa7"){
     warning("Please use your own baidu API!\nSet it using: options(remap.ak = \"XXXXX\")\nhttp://lbsyun.baidu.com")
   }
   city = paste0(c("",charToRaw(city)),collapse="%")
