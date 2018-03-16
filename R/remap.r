@@ -60,7 +60,12 @@ remap = function(mapdata,
 
 
   ###geoCoord_data
-  mapdata$value = sample(seq(0,100,10),nrow(mapdata),replace = T)
+  if ("value" %in% colnames(mapdata)){
+
+  }else {
+    mapdata$value = sample(seq(0,100,10),nrow(mapdata),replace = T)
+  }
+
 
   city_data_vec = apply(Geo_data,1,function(x)
     paste0("'",
