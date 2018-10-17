@@ -411,7 +411,7 @@ optionNameData = {
                }
   }},
   toolbox: {
-    show : true
+    show : false
   },
   series : [
     {
