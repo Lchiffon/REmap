@@ -25,6 +25,13 @@
               to = paste0(path,"/js"))
   }
 
+  ## Save map.js
+  if(!file.exists(paste0(path,"/js/chart/map.js"))){
+    file.copy(from = system.file("JS/chart",package = 'REmap'),
+              to = paste0(path,"/js"),
+              recursive = T)
+  }
+
   ## Save juqery.min.js
   if(!file.exists(paste0(path,"/js/jquery.min.js"))){
     file.copy(from = system.file("JS/jquery.min.js",package = 'REmap'),

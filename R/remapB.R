@@ -349,13 +349,13 @@ html.data.B = list(head = "<html>
                 <div id='main'></div>
                 <script src='http://echarts.baidu.com/build/dist/echarts.js'></script>
                 <script type='text/javascript' src='http://api.map.baidu.com/api?v=2.0&ak=q9U1lWgCK1aBGVC1DVWrgWa7'></script>
-                <script src='http://echarts.baidu.com/doc/asset/js/jquery.min.js'></script>
+                <script src='http://lchiffon.github.io/reveal_slidify/echarts/require/jquery.min.js'></script>
                 <script>",
                options = "forChangekkkmmm
                 (function () {
                 require.config({
                 paths: {
-                echarts:'http://echarts.baidu.com/doc/example/www/js'
+                echarts:'http://lchiffon.github.io/reveal_slidify/echarts/require'
                 },
                 packages: [
                 {

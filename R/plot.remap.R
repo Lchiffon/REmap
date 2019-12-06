@@ -76,8 +76,12 @@ local.plot = function(object,file_name){
     content = sub("http://echarts.baidu.com/build/dist/echarts.js",
                   "./js/echarts.js",
                   object@content)
-    content = sub("http://echarts.baidu.com/doc/asset/js/jquery.min.js",
+    content = sub("http://lchiffon.github.io/reveal_slidify/echarts/require/jquery.min.js",
                   "./js/jquery.min.js",
+                  content)
+
+    content = sub("http://lchiffon.github.io/reveal_slidify/echarts/require",
+                  "./js",
                   content)
 
     content = sub("http://lchiffon.github.io/reveal_slidify/echarts/require",
