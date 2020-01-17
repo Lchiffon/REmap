@@ -411,16 +411,7 @@ optionNameData = {
                }
   }},
   toolbox: {
-    show : true,
-    orient : 'vertical',
-    x: 'right',
-    y: 'center',
-    feature : {
-      mark : {show: true},
-      dataView : {show: true, readOnly: false},
-      restore : {show: true},
-      saveAsImage : {show: true}
-    }
+    show : false
   },
   series : [
     {
